@@ -19,13 +19,13 @@ Route::get('/registration',[RegistrationController::class, 'index'])->name('regi
 Route::post('/registration',[RegistrationController::class, 'store'])->name('registration.store');
 Route::get('/success/{firstName}',[RegistrationController::class, 'success'])->name('registration.success');
 
-Auth::routes();
+// Auth::routes();
 
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::group(['middleware' => 'auth'], function() {
+//     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::resource('members', MemberController::class);
-});
+//     Route::resource('members', MemberController::class);
+// });
 
 
 
