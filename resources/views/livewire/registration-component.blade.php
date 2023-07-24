@@ -18,7 +18,7 @@
                     @enderror
                 </div>
                 <div class="col-sm-6">
-                    <label for="middleName">Middle Name (optional)</label>
+                    <label for="middleName">Middle Name</label>
                     <input type="text" class="form-control form-control-lg" id="middleName" wire:model="middleName">
                 </div>
             </div>
@@ -34,7 +34,7 @@
                     @enderror
                 </div>
                 <div class="col-sm-6">
-                    <label for="extName">Extension Name (ex. JR,SR.) (optional)</label>
+                    <label for="extName">Extension Name (ex. JR,SR.)</label>
                     <input type="text" class="form-control form-control-lg" id="extName" wire:model="extName">
                 </div>
             </div>
