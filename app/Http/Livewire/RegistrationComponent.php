@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\Member;
+use Livewire\Component;
+use App\Rules\UniqueNameCombination;
+
+class RegistrationComponent extends Component
+{
+    public $firstName;
+    public $middleName;
+    public $lastName;
+    public $extName;
+    public $gender;
+    public $birthDate;
+    public $contactNumber;
+    public $address;
+    public $email;
+    public $dateBaptized;
+
+    protected $rules = [
+        'firstName' => 'required|max:100',
+        'lastName' => 'required|max:100',
+        'gender' => 'required',
+        'birthDate' => 'required',
+    ];
+
+    public function render()
+    {
+        return view('livewire.registration-component');
+    }
+
+    public function store()
+    {
+        $this->validate();
+
+        // Check if a user with the given first name and last name exists
+        $firstName = $this->firstName;
+        $lastName = $this->lastName;
+        $memberExists = Member::where('first_name', $firstName)
+                        ->where('last_name', $lastName)
+                        ->first();
+
+        if ($memberExists) {
+            toastr()->error('The first name and last name combination is already in use.');
+            return;
+        }
+
+        $data = [
+            'first_name' => $this->firstName,
+            'middle_name' => $this->middleName,
+            'last_name' => $this->lastName,
+            'ext_name' => $this->extName,
+            'gender' => $this->gender,
+            'birth_date' => $this->birthDate,
+            'address' => $this->address,
+            'contact_number' => $this->contactNumber,
+            'email' => $this->email,
+            'date_baptized' => $this->dateBaptized,
+        ];
+
+        $data = Member::create($data);
+
+        if($data) {
+            toastr()->success('Registration succeed!');
+            return redirect()->route('registration.success', ['firstName' => $this->firstName]);
+        }
+    }
+}
