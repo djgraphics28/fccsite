@@ -17,7 +17,7 @@ use App\Http\Controllers\RegistrationController;
 
 Route::get('/registration',[RegistrationController::class, 'index'])->name('registration');
 Route::post('/registration',[RegistrationController::class, 'store'])->name('registration.store');
-Route::get('/success/{firstName}',[RegistrationController::class, 'success'])->name('registration.success');
+Route::get('/success/{id}',[RegistrationController::class, 'success'])->name('registration.success');
 
 // Auth::routes();
 

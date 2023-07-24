@@ -6,6 +6,19 @@
         </div>
         @error('nameCombination') <span class="error">{{ $message }}</span> @enderror
         <form class="user" wire:submit.prevent="store">
+            <div class="form-group">
+                <label for="isFirstTime">Is this your first time attending here at FCC Bugayong?</label>
+               <select class="form-control form-control-lg id="isFirstTime" wire:model="isFirstTime">
+                    <option value="">Select option</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+               </select>
+               @error('gender')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label for="firstName">First Name</label>

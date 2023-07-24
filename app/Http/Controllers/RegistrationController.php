@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -16,8 +17,11 @@ class RegistrationController extends Controller
 
     }
 
-    public function success($firstName)
+    public function success($id)
     {
-        return view('success', compact('firstName'));
+        $data = Member::find($id);
+        $name = $data->first_name;
+        $isFirstTime = $data->is_first_time;
+        return view('success', compact('name','isFirstTime'));
     }
 }

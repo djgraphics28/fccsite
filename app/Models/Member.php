@@ -20,6 +20,8 @@ class Member extends Model
         'address',
         'email',
         'date_baptized',
+        'is_first_time',
         'is_active',
+        'is_approved',
     ];
 }

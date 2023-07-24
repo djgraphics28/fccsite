@@ -23,7 +23,9 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('email')->nullable();
             $table->date('date_baptized')->nullable();
+            $table->boolean('is_first_time')->default(0);
             $table->boolean('is_active')->default(1);
+            $table->boolean('is_approved')->default(0);
             $table->timestamps();
         });
     }

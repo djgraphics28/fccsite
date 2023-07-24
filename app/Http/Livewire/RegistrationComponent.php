@@ -18,12 +18,14 @@ class RegistrationComponent extends Component
     public $address;
     public $email;
     public $dateBaptized;
+    public $isFirstTime;
 
     protected $rules = [
         'firstName' => 'required|max:100',
         'lastName' => 'required|max:100',
         'gender' => 'required',
         'birthDate' => 'required',
+        'isFirstTime' => 'required',
     ];
 
     public function render()
@@ -43,7 +45,7 @@ class RegistrationComponent extends Component
                         ->first();
 
         if ($memberExists) {
-            toastr()->error('The first name and last name combination is already in use.');
+            toastr()->warning('The first name and last name combination is already in use.');
             return;
         }
 
@@ -58,13 +60,14 @@ class RegistrationComponent extends Component
             'contact_number' => $this->contactNumber,
             'email' => $this->email,
             'date_baptized' => $this->dateBaptized,
+            'is_first_time' => $this->isFirstTime,
         ];
 
         $data = Member::create($data);
 
         if($data) {
             toastr()->success('Registration succeed!');
-            return redirect()->route('registration.success', ['firstName' => $this->firstName]);
+            return redirect()->route('registration.success', ['id' => $data->id]);
         }
     }
 }
