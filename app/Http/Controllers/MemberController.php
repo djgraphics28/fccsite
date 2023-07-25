@@ -9,9 +9,9 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($status)
     {
-        return view('backend.members.index');
+        return view('backend.members.index', compact('status'));
     }
 
     /**

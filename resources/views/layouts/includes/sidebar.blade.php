@@ -36,8 +36,8 @@
         <div id="collapseMembers" class="collapse" aria-labelledby="headingMembers" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage Members:</h6>
-                <a class="collapse-item" href="{{ route('members.index') }}">Newly Registered</a>
-                <a class="collapse-item" href="{{ route('members.index') }}">Verified Members</a>
+                <a class="collapse-item" href="{{ route('members.index', 0) }}">Newly Registered</a>
+                <a class="collapse-item" href="{{ route('members.index', 1) }}">Verified Members</a>
             </div>
         </div>
     </li>
