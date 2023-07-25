@@ -24,4 +24,16 @@ class Member extends Model
         'is_active',
         'is_approved',
     ];
+
+    public function scopeSearch($query, $searchTerm)
+    {
+        $searchTerm = "%$searchTerm%";
+
+        $query->where(function($query) use ($searchTerm){
+
+            $query->where('first_name','like', $searchTerm)
+            ->orWhere('last_name','like', $searchTerm);
+        });
+
+    }
 }

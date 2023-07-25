@@ -4,14 +4,31 @@ namespace App\Http\Livewire;
 
 use App\Models\Member;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class MembersTable extends Component
 {
+    use WithPagination;
+    public $searchTerm;
+
+    protected $listeners = ['remove'];
+    public $approveConfirmed;
+    // filters
+    public $perPage = 10;
+
+    protected $paginationTheme = 'bootstrap';
+
     public function render()
     {
-        $records = Member::latest()->get();
         return view('livewire.members-table', [
-            'records'=> $records
+            'records'=> $this->records
         ]);
+    }
+
+    public function getRecordsProperty()
+    {
+        return Member::latest()
+        ->search(trim($this->searchTerm))
+        ->paginate($this->perPage);
     }
 }

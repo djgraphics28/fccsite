@@ -30,13 +30,14 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMembers"
             aria-expanded="true" aria-controls="collapseMembers">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-fw fa-users"></i>
             <span>Members</span>
         </a>
         <div id="collapseMembers" class="collapse" aria-labelledby="headingMembers" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage Members:</h6>
                 <a class="collapse-item" href="{{ route('members.index') }}">Newly Registered</a>
+                <a class="collapse-item" href="{{ route('members.index') }}">Verified Members</a>
             </div>
         </div>
     </li>
