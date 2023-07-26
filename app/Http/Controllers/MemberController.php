@@ -43,7 +43,7 @@ class MemberController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('backend.members.edit');
     }
 
     /**

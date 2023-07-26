@@ -30,8 +30,8 @@
                         <td>{{ $row->contact_number }}</td>
                         <td>{{ $row->address }}</td>
                         <td>
-                            <button class="btn btn-warning">Edit</button>
-                            <button class="btn btn-danger">Remove</button>
+                            <a href="{{ route('members.edit', $row->id) }}" class="btn btn-warning">Edit</a>
+                            <a class="btn btn-danger">Remove</a>
                         </td>
                     </tr>
                 @empty
