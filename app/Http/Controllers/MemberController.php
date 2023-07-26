@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Http\Requests\MemberStoreRequest;
 
 class MemberController extends Controller
 {
@@ -19,15 +21,16 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.members.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MemberStoreRequest $request)
     {
-        //
+        $data = Member::create($request->validated());
+        $data->addMediaFromRequest('image')->toMediaCollection();
     }
 
     /**

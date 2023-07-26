@@ -4,7 +4,7 @@
             <img src="{{ asset('FCCPI.png') }}" alt="FCCPI Logo" width="50px" class="mb-2">
             <h1 class="h4 text-dark mb-4">Membership Form</h1>
         </div>
-        @error('nameCombination') <span class="error">{{ $message }}</span> @enderror
+        {{-- @error('nameCombination') <span class="error">{{ $message }}</span> @enderror --}}
         <form class="user" wire:submit.prevent="store">
             <div class="form-group">
                 <label for="isFirstTime">Is this your first time attending here at FCC Bugayong?</label>
