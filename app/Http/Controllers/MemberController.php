@@ -56,9 +56,23 @@ class MemberController extends Controller
     public function update(MemberUpdateRequest $request, string $id)
     {
         $member = Member::findOrFail($id);
-        $data = $request->only($member->getFillable());
 
-        $member->fill($data)->save();
+        $data = [
+            'first_name' => $request->firstName,
+            'middle_name' => $request->middleName,
+            'last_name' => $request->lastName,
+            'ext_name' => $request->extName,
+            'gender' => $request->gender,
+            'birth_date' => $request->birthDate,
+            'address' => $request->address,
+            'contact_number' => $request->contactNumber,
+            'email' => $request->email,
+            'date_baptized' => $request->dateBaptized,
+            'is_first_time' => $request->isFirstTime,
+        ];
+
+        $member->update($data);
+
         return redirect()->route('members.index')->with('success', 'Member Info is updated successfully!');
     }
 
