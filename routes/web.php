@@ -19,13 +19,13 @@ Route::get('/registration',[RegistrationController::class, 'index'])->name('regi
 Route::post('/registration',[RegistrationController::class, 'store'])->name('registration.store');
 Route::get('/success/{id}',[RegistrationController::class, 'success'])->name('registration.success');
 
-Auth::routes(['register' => false]);
+Auth::routes(['register'=>false]);
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::resource('members', MemberController::class)->except(['index']);
-    Route::get('/members/{status}/status', [MemberController::class, 'index'])->name('members.index');
+    Route::resource('members', MemberController::class);
+    // Route::get('/members/{status}/status', [MemberController::class, 'index'])->name('members.index');
 });
 
 

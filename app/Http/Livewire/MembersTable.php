@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class MembersTable extends Component
 {
     use WithPagination;
-    public $status;
+    // public $status;
 
     public $searchTerm;
 
@@ -29,7 +29,7 @@ class MembersTable extends Component
 
     public function getRecordsProperty()
     {
-        return Member::where('is_approved', $this->status)->latest()
+        return Member::latest()
         ->search(trim($this->searchTerm))
         ->paginate($this->perPage);
     }
