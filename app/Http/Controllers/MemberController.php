@@ -30,8 +30,37 @@ class MemberController extends Controller
      */
     public function store(MemberStoreRequest $request)
     {
-        $data = Member::create($request->validated());
-        $data->addMediaFromRequest('image')->toMediaCollection();
+        $firstName = $request->firstName;
+        $lastName = $request->lastName;
+        $memberExists = Member::where('first_name', $firstName)
+                        ->where('last_name', $lastName)
+                        ->first();
+
+        if ($memberExists) {
+            toastr()->warning('The first name and last name combination is already in use.');
+            return;
+        }
+
+        $data = [
+            'first_name' => ucwords($request->firstName),
+            'middle_name' => ucwords($request->middleName),
+            'last_name' => ucwords($request->lastName),
+            'ext_name' => ucwords($request->extName),
+            'gender' => $request->gender,
+            'birth_date' => $request->birthDate,
+            'address' => $request->address,
+            'contact_number' => $request->contactNumber,
+            'email' => $request->email,
+            'date_baptized' => $request->dateBaptized,
+            'is_first_time' => $request->isFirstTime,
+        ];
+
+        $data = Member::create($data);
+
+        if($data) {
+            toastr()->success('New Member has been created successfully!');
+            return redirect()->route('members.index');
+        }
     }
 
     /**
