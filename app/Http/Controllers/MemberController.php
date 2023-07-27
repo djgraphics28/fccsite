@@ -58,10 +58,10 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
 
         $data = [
-            'first_name' => $request->firstName,
-            'middle_name' => $request->middleName,
-            'last_name' => $request->lastName,
-            'ext_name' => $request->extName,
+            'first_name' => ucwords($request->firstName),
+            'middle_name' => ucwords($request->middleName),
+            'last_name' => ucwords($request->lastName),
+            'ext_name' => ucwords($request->extName),
             'gender' => $request->gender,
             'birth_date' => $request->birthDate,
             'address' => $request->address,
