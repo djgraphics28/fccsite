@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Http\Requests\MemberStoreRequest;
+use App\Http\Requests\MemberUpdateRequest;
 
 class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($status)
+    public function index()
     {
-        return view('backend.members.index', compact('status'));
+        return view('backend.members.index');
     }
 
     /**
@@ -44,17 +45,21 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Member $member)
     {
-        return view('backend.members.edit');
+        return view('backend.members.edit', compact('member'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MemberUpdateRequest $request, string $id)
     {
-        //
+        $member = Member::findOrFail($id);
+        $data = $request->only($member->getFillable());
+
+        $member->fill($data)->save();
+        return redirect()->route('members.index')->with('success', 'Member Info is updated successfully!');
     }
 
     /**

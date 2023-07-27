@@ -15,7 +15,7 @@
                     <h4>Results</h4>
                 </div>
                 <div class="card-body">
-                    @livewire('members-table', ['status' => $status])
+                    @livewire('members-table')
                 </div>
             </div>
         </div>
