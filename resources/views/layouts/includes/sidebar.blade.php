@@ -42,6 +42,22 @@
         </div>
     </li>
 
+     <!-- Nav Item - Members Collapse Menu -->
+     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGroups"
+            aria-expanded="true" aria-controls="collapseGroups">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Groups</span>
+        </a>
+        <div id="collapseGroups" class="collapse" aria-labelledby="headingGroups" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Manage Groups:</h6>
+                <a class="collapse-item" href="{{ route('groups.index') }}">View Groups</a>
+                {{-- <a class="collapse-item" href="{{ route('members.index', 1) }}">Verified Members</a> --}}
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

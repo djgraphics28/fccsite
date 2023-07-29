@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RegistrationController;
 
 /*
@@ -25,7 +26,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::resource('members', MemberController::class);
-    // Route::get('/members/{status}/status', [MemberController::class, 'index'])->name('members.index');
+
+    Route::resource('groups', GroupController::class);
+
 });
 
 

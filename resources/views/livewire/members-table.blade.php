@@ -26,7 +26,11 @@
                             @if ($row->hasMedia('profile_picture'))
                                 <img src="{{ $row->getFirstMediaUrl('profile_picture', 'thumbnail') }}" alt="{{ $row->first_name }}">
                             @else
-                                No Profile Picture
+                                @if ($row->gender == "Male")
+                                    <img width="50px" src="{{ asset('assets/img/profile_image/male.png') }}" alt="">
+                                @else
+                                    <img width="50px" src="{{ asset('assets/img/profile_image/female.png') }}" alt="">
+                                @endif
                             @endif
                         </td>
                         <td>{{ $row->first_name }} {{ $row->middle_name }} {{ $row->last_name }} {{ $row->ext_name }}</td>
