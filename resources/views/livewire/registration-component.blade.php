@@ -7,13 +7,13 @@
         {{-- @error('nameCombination') <span class="error">{{ $message }}</span> @enderror --}}
         <form class="user" wire:submit.prevent="store">
             <div class="form-group">
-                <label for="isFirstTime">Is this your first time attending here at FCC Bugayong?</label>
-               <select class="form-control form-control-lg id="isFirstTime" wire:model="isFirstTime">
-                    <option value="">Select option</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-               </select>
-               @error('gender')
+                <label for="">Ito ba ang unang pagkakataon mo na dumalo sa FCC Bugayong Church?</label>
+                <select class="form-control form-control-lg id="isFirstTime" wire:model="isFirstTime">
+                        <option value="">-- choose option --</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                </select>
+                @error('gender')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="gender">Gender</label>
                <select class="form-control form-control-lg @error('gender') is-invalid @enderror" id="gender" wire:model="gender">
-                    <option value="">Select option</option>
+                    <option value="">-- choose option --</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                </select>
@@ -82,11 +82,11 @@
                 <textarea class="form-control" cols="30" rows="3" wire:model="address"></textarea>
             </div>
             <div class="form-group">
-                <label for="email">EmailAddress</label>
+                <label for="email">Email Address</label>
                 <input type="email" class="form-control form-control-lg" id="email" placeholder="example@gmail.com">
             </div>
             <div class="form-group">
-                <label for="dateBaptized">If already baptized, When? (optional)</label>
+                <label for="dateBaptized">Kailan ka na-baptized? (optional)</label>
                 <input type="date" class="form-control form-control-lg" id="dateBaptized" wire:model="dateBaptized">
             </div>
 
