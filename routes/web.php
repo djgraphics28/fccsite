@@ -21,7 +21,7 @@ Route::get('/registration',[RegistrationController::class, 'index'])->name('regi
 Route::post('/registration',[RegistrationController::class, 'store'])->name('registration.store');
 Route::get('/success/{id}',[RegistrationController::class, 'success'])->name('registration.success');
 
-Auth::routes(['register'=>false]);
+Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
