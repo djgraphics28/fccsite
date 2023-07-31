@@ -17,36 +17,41 @@
                     <h4>Edit Family Form</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('groups.update', $group->id) }}" method="POST">
+                    <form action="{{ route('families.update', $family->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="name">Group Name</label>
+                                <label for="family_name">Family Name</label>
                                 <input type="text"
-                                    class="form-control form-control-lg @error('name') is-invalid @enderror" id="name" value="{{ $group->name }}"
-                                    name="name">
+                                    class="form-control form-control-lg @error('family_name') is-invalid @enderror" id="family_name" value="{{ $family->family_name }}"
+                                    name="family_name">
 
-                                @error('name')
+                                @error('family_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-sm-6">
-                                <label for="leader">Leader</label>
-                                <select class="form-control form-control-lg @error('leader') is-invalid @enderror"
-                                    id="leader" name="leader">
-                                    <option value="">Select Leader</option>
-                                    @foreach ($members  as $item)
-                                        <option {{ $item->id == $group->member_id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name }}</option>
+                            <div class="col-sm-3">
+                                <label for="father">Father</label>
+                                <select class="form-control form-control-lg"
+                                    id="father" name="father">
+                                    <option value="">Select Father</option>
+                                    @foreach ($members as $item)
+                                        <option {{ $item->id == $family->father ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name }}</option>
                                     @endforeach
                                 </select>
-                                @error('leader')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="mother">Mother</label>
+                                <select class="form-control form-control-lg"
+                                    id="father" name="mother">
+                                    <option value="">Select Mother</option>
+                                    @foreach ($members as $item)
+                                        <option {{ $item->id == $family->mother ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
