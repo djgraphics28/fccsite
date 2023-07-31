@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Family extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'member_id',
-        'is_active',
+        'family_name',
+        'father',
+        'mother',
     ];
 
     public function scopeSearch($query, $searchTerm)
@@ -21,7 +21,7 @@ class Group extends Model
 
         $query->where(function($query) use ($searchTerm){
 
-            $query->where('name','like', $searchTerm);
+            $query->where('family_name','like', $searchTerm);
         });
 
     }
@@ -31,8 +31,13 @@ class Group extends Model
         return $this->belongsToMany(Member::class);
     }
 
-    public function leader()
+    public function father()
     {
-        return $this->belongsTo(Member::class, 'member_id', 'id');
+        return $this->belongsTo(Member::class, 'father', 'id');
+    }
+
+    public function mother()
+    {
+        return $this->belongsTo(Member::class, 'mother', 'id');
     }
 }

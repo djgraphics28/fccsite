@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Http\Requests\GroupStoreRequest;
+use App\Http\Requests\GroupUpdateRequest;
 
 class GroupController extends Controller
 {
@@ -34,7 +35,7 @@ class GroupController extends Controller
     {
         $data = [
             'name' => ucwords($request->name),
-            'member_id' => $request->member_id,
+            'member_id' => $request->leader,
         ];
 
         $data = Group::create($data);
@@ -58,15 +59,25 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        $members = Member::where('is_active', 1)->get();
+        return view('backend.groups.edit', compact('group', 'members'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Group $group)
+    public function update(GroupUpdateRequest $request, string $id)
     {
-        //
+        $group = Group::findOrFail($id);
+
+        $data = [
+            'name' => ucwords($request->name),
+            'member_id' => $request->leader,
+        ];
+
+        $group->update($data);
+
+        return redirect()->route('groups.index')->with('success', 'Group Info is updated successfully!');
     }
 
     /**

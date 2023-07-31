@@ -42,7 +42,7 @@
         </div>
     </li>
 
-     <!-- Nav Item - Members Collapse Menu -->
+     <!-- Nav Item - Groups Collapse Menu -->
      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGroups"
             aria-expanded="true" aria-controls="collapseGroups">
@@ -53,6 +53,22 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage Groups:</h6>
                 <a class="collapse-item" href="{{ route('groups.index') }}">View Groups</a>
+                {{-- <a class="collapse-item" href="{{ route('members.index', 1) }}">Verified Members</a> --}}
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Families Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFamilies"
+            aria-expanded="true" aria-controls="collapseFamilies">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Families</span>
+        </a>
+        <div id="collapseFamilies" class="collapse" aria-labelledby="headingGroups" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Manage Families:</h6>
+                <a class="collapse-item" href="{{ route('families.index') }}">View Families</a>
                 {{-- <a class="collapse-item" href="{{ route('members.index', 1) }}">Verified Members</a> --}}
             </div>
         </div>
