@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FamilyStoreRequest;
+use App\Http\Requests\FamilyUpdateRequest;
 use App\Models\Family;
 use App\Models\Member;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class FamilyController extends Controller
      */
     public function show(Family $family)
     {
-        //
+
     }
 
     /**
@@ -59,15 +60,26 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        //
+        $members = Member::where('is_active', 1)->get();
+        return view('backend.families.edit', compact('family', 'members'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Family $family)
+    public function update(FamilyUpdateRequest $request, string $id)
     {
-        //
+        $family = Family::findOrFail($id);
+
+        $data = [
+            'family_name' => ucwords($request->family_name),
+            'father' => $request->father,
+            'mother' => $request->mother,
+        ];
+
+        $family->update($data);
+
+        return redirect()->route('families.index')->with('success', 'Family Info is updated successfully!');
     }
 
     /**
