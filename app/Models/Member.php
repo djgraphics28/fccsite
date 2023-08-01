@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Member extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
+
+    protected $dates = ['birth_date'];
+
+    protected $append = [
+        'age'
+    ];
 
     protected $fillable = [
         'first_name',
@@ -42,5 +49,21 @@ class Member extends Model implements HasMedia
     public function groups()
     {
         return $this->belongsToMany(Group::class);
+    }
+
+   // Define a mutator for the 'birth_date' attribute to ensure it is stored in the correct format
+   public function setBirthDateAttribute($value)
+   {
+       $this->attributes['birth_date'] = Carbon::createFromFormat('Y-m-d', $value)->format('Y-m-d');
+   }
+
+   // Define an accessor for the 'birth_date' attribute to ensure it is returned in the desired format
+   public function getBirthDateAttribute($value)
+   {
+       return $value ? Carbon::parse($value)->format('Y-m-d') : null;
+   }
+    public function getAgeAttribute()
+    {
+        return $this->birth_date ? date_diff(date_create($this->birth_date), date_create('today'))->y . ' years old' : '' ;
     }
 }
