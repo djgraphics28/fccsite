@@ -11,7 +11,8 @@ class BirthdayController extends Controller
     {
          // Get the member grouped by birth month
          $membersByMonth = Member::select('id', 'first_name', 'birth_date', 'gender')
-            ->orderByRaw('MONTH(birth_date)') // Order the users by birth month (numerical)
+            ->orderByRaw('MONTH(birth_date)') // Order the members by birth month (numerical)
+            ->orderByRaw('DAY(birth_date)') // Order the members by birth Day (numerical)
             ->orderBy('birth_date')
             ->get()
             ->groupBy(function ($member) {
