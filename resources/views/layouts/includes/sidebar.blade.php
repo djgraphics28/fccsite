@@ -74,6 +74,13 @@
         </div>
     </li>
 
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('birthday.celebrators') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Birthday Celebrators</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

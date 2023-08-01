@@ -36,7 +36,7 @@
                         <td>{{ $row->first_name }} {{ $row->middle_name }} {{ $row->last_name }} {{ $row->ext_name }}</td>
                         <td>{{ $row->gender }}</td>
                         <td>{{ $row->birth_date }}</td>
-                        <td>{{ $row->birth_date ? date_diff(date_create($row->birth_date), date_create('today'))->y . ' years old' : '' }}
+                        <td>{{ $row->age }}
                         </td>
                         <td>{{ $row->contact_number }}</td>
                         <td>{{ $row->address }}</td>
