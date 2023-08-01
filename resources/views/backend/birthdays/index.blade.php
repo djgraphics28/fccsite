@@ -23,12 +23,12 @@
                         <h2>{{ $monthName }}</h2>
                         <div class="row ml-1">
                             @foreach ($members as $member)
-                                <div class="card mr-2" style="width: 12rem;">
+                                <div class="card mr-2 mb-2" style="width: 10rem;">
                                     <img class="card-img-top" src="{{ $member->gender =='Male' ? asset('assets/img/profile_image/male.png') : asset('assets/img/profile_image/female.png') }}" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $member->first_name }}</h5>
-                                        <p>Date: {{ $member->birth_date }}</p>
-                                        <p>Age: {{ $member->age }}</p>
+                                        <span>Birth Date: <b>{{ $member->birth_date }}</b></span>
+                                        <span>Age: <b>{{ $member->age }}</b></span>
                                     </div>
                                 </div>
                             @endforeach
