@@ -74,11 +74,27 @@
         </div>
     </li>
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <!-- Nav Item - Birthday Celebrators -->
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('birthday.celebrators') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Birthday Celebrators</span></a>
+    </li>
+
+    <!-- Nav Item - VBS Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVbs"
+            aria-expanded="true" aria-controls="collapseVbs">
+            <i class="fas fa-fw fa-users"></i>
+            <span>VBS</span>
+        </a>
+        <div id="collapseVbs" class="collapse" aria-labelledby="headingVbs" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Manage VBS:</h6>
+                <a class="collapse-item" href="{{ route('vbs.index') }}">View VBS Lists</a>
+                {{-- <a class="collapse-item" href="{{ route('members.index', 1) }}">Verified Members</a> --}}
+            </div>
+        </div>
     </li>
 
     <!-- Divider -->
