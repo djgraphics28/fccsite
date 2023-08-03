@@ -66,23 +66,30 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="extName">Extension Name (ex. JR,SR.)</label>
-                                <input type="text" class="form-control form-control-lg" id="extName"
-                                    name="extName">
+                                <input type="text" class="form-control form-control-lg" id="extName" name="extName">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <select class="form-control form-control-lg @error('gender') is-invalid @enderror"
-                                id="gender" name="gender">
-                                <option value="">Select option</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                            @error('gender')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <div class="form-group row">
+                            <div class="col-sm-6  mb-3 mb-sm-0">
+                                <label for="nickname">Nickname (optional)</label>
+                                <input type="text" class="form-control form-control-lg" id="nickname"
+                                    name="nickname">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="gender">Gender</label>
+                                <select class="form-control form-control-lg @error('gender') is-invalid @enderror"
+                                    id="gender" name="gender">
+                                    <option value="">Select option</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                @error('gender')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="birthDate">Birth Date</label>

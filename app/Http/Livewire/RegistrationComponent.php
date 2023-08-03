@@ -54,6 +54,7 @@ class RegistrationComponent extends Component
             'middle_name' => ucwords($this->middleName),
             'last_name' => ucwords($this->lastName),
             'ext_name' => ucwords($this->extName),
+            'nickname' => ucwords($this->nickname),
             'gender' => $this->gender,
             'birth_date' => $this->birthDate,
             'address' => $this->address,

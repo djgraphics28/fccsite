@@ -72,7 +72,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th class="text-center" width="2%">#</th>
                             <th>Name</th>
                             <th>Age</th>
                             <th>Action</th>
@@ -81,10 +81,10 @@
                     <tbody>
                         @forelse ($kids as $row)
                             <tr>
-                                <td></td>
-                                <td>{{ $row->member->first_name }}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $row->first_name }} {{ $row->last_name }}</td>
+                                <td>{{ $row->age }}</td>
+                                <td><button wire:click="addToVbs({{ $row->id }})" class="btn btn-success">ADD</button></td>
                             </tr>
                         @empty
 

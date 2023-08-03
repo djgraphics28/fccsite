@@ -26,6 +26,7 @@ class Member extends Model implements HasMedia
         'middle_name',
         'last_name',
         'ext_name',
+        'nickname',
         'gender',
         'birth_date',
         'contact_number',
