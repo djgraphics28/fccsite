@@ -19,6 +19,10 @@
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
+
+            @if ($selectedRows)
+                <button wire:click="bulkPrint" class="btn btn-primary ml-3">Print Certificate</button>
+            @endif
         </div>
         <table class="table table-hover">
             <thead>

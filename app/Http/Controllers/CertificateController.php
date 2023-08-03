@@ -8,32 +8,32 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
-    public function generateCertificate($memberId)
+    public function generateCertificate($memberIds)
     {
         // $name = $request->input('name', 'John Doe'); // Default value if name is not provided
         // $title = $request->input('title', 'Certificate of Achievement'); // Default value if course is not provided
         // $desc = $request->input('desc', 'Lorem Ipsum.'); // Default value if course is not provided
         $backgroundImage = 'assets/cert_templates/baptism_cert.png'; // Background image URL, if provided
+        $ids = json_decode($memberIds);
+        $members = Member::whereIn('id', $ids)->whereNotNull('date_baptized')->get();
 
-        $member = Member::find($memberId);
+        // $data = [
+        //     'name' => $member->first_name,
+        //     'title' => 'Cetificate of Water Baptism',
+        //     'desc' => 'Lorem Ipsum',
+        //     // Add other variables you need for the certificate
+        // ];
 
-        $data = [
-            'name' => $member->first_name,
-            'title' => 'Cetificate of Water Baptism',
-            'desc' => 'Lorem Ipsum',
-            // Add other variables you need for the certificate
-        ];
-
-        $pdf = PDF::loadView('backend.certificates.index', $data);
+        $pdf = PDF::loadView('backend.certificates.index', compact('members'));
 
         // If a background image is provided, set it as the background
-        if ($backgroundImage) {
-            $pdf->getDomPDF()->set_option('enable_html5_parser', true);
-            $html = '<html><body style="background-image: url(\'' . $backgroundImage . '\'); background-size: cover; background-repeat: no-repeat; margin: 0;">';
-            $html .= view('backend.certificates.index', $data)->render();
-            $html .= '</body></html>';
-            $pdf->loadHTML($html);
-        }
+        // if ($backgroundImage) {
+        //     $pdf->getDomPDF()->set_option('enable_html5_parser', true);
+        //     $html = '<html><body style="background-image: url(\'' . $backgroundImage . '\'); background-size: cover; background-repeat: no-repeat; margin: 0;">';
+        //     $html .= view('backend.certificates.index', $data)->render();
+        //     $html .= '</body></html>';
+        //     $pdf->loadHTML($html);
+        // }
 
         // $pdf->setOptions(['margin-top' => 0, 'margin-right' => 0, 'margin-bottom' => 0, 'margin-left' => 0]);
         $pdf->setOption('margin', 0);
