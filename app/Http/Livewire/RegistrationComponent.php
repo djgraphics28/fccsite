@@ -12,6 +12,7 @@ class RegistrationComponent extends Component
     public $middleName;
     public $lastName;
     public $extName;
+    public $nickname;
     public $gender;
     public $birthDate;
     public $contactNumber;

@@ -13,13 +13,13 @@ class CertificateController extends Controller
         // $name = $request->input('name', 'John Doe'); // Default value if name is not provided
         // $title = $request->input('title', 'Certificate of Achievement'); // Default value if course is not provided
         // $desc = $request->input('desc', 'Lorem Ipsum.'); // Default value if course is not provided
-        $backgroundImage = null; // Background image URL, if provided
+        $backgroundImage = 'assets/cert_templates/baptism_cert.png'; // Background image URL, if provided
 
         $member = Member::find($memberId);
 
         $data = [
             'name' => $member->first_name,
-            'title' => 'Cetificate of Achievement',
+            'title' => 'Cetificate of Water Baptism',
             'desc' => 'Lorem Ipsum',
             // Add other variables you need for the certificate
         ];
@@ -29,14 +29,18 @@ class CertificateController extends Controller
         // If a background image is provided, set it as the background
         if ($backgroundImage) {
             $pdf->getDomPDF()->set_option('enable_html5_parser', true);
-            $html = '<html><body style="background-image: url(\'' . $backgroundImage . '\'); background-size: cover; background-repeat: no-repeat;">';
+            $html = '<html><body style="background-image: url(\'' . $backgroundImage . '\'); background-size: cover; background-repeat: no-repeat; margin: 0;">';
             $html .= view('backend.certificates.index', $data)->render();
             $html .= '</body></html>';
             $pdf->loadHTML($html);
         }
 
+        // $pdf->setOptions(['margin-top' => 0, 'margin-right' => 0, 'margin-bottom' => 0, 'margin-left' => 0]);
+        $pdf->setOption('margin', 0);
+        $pdf->setOption('padding', 0);
         // Set paper size to A4 (21 x 29.7 cm)
         $pdf->setPaper('A4', 'landscape');
+
 
         return $pdf->stream('certificate.pdf');
     }
