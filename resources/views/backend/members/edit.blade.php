@@ -17,7 +17,7 @@
                     <h4>Edit Member Form</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('members.update',$member->id) }}" method="POST">
+                    <form action="{{ route('members.update', $member->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -48,8 +48,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="middleName">Middle Name</label>
-                                <input type="text" class="form-control form-control-lg" id="middleName"
-                                    name="middleName" value="{{ $member->middle_name ?? '' }}">
+                                <input type="text" class="form-control form-control-lg" id="middleName" name="middleName"
+                                    value="{{ $member->middle_name ?? '' }}">
                             </div>
                         </div>
 
@@ -67,23 +67,31 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="extName">Extension Name (ex. JR,SR.)</label>
-                                <input type="text" class="form-control form-control-lg" id="extName"
-                                    name="extName" value="{{ $member->ext_name ?? '' }}">
+                                <input type="text" class="form-control form-control-lg" id="extName" name="extName"
+                                    value="{{ $member->ext_name ?? '' }}">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <select class="form-control form-control-lg @error('gender') is-invalid @enderror"
-                                id="gender" name="gender">
-                                <option value="">Select option</option>
-                                <option {{ $member->gender == 'Male' ? 'selected' : '' }} value="Male">Male</option>
-                                <option {{ $member->gender == 'Female' ? 'selected' : '' }} value="Female">Female</option>
-                            </select>
-                            @error('gender')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <div class="form-group row">
+                            <div class="col-sm-6  mb-3 mb-sm-0">
+                                <label for="nickname">Nickname (optional)</label>
+                                <input type="text" class="form-control form-control-lg" id="nickname" name="nickname"
+                                    value="{{ $member->nickname ?? '' }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="gender">Gender</label>
+                                <select class="form-control form-control-lg @error('gender') is-invalid @enderror"
+                                    id="gender" name="gender">
+                                    <option value="">Select option</option>
+                                    <option {{ $member->gender == 'Male' ? 'selected' : '' }} value="Male">Male</option>
+                                    <option {{ $member->gender == 'Female' ? 'selected' : '' }} value="Female">Female
+                                    </option>
+                                </select>
+                                @error('gender')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="birthDate">Birth Date</label>

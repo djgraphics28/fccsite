@@ -33,4 +33,9 @@ class MembersTable extends Component
         ->search(trim($this->searchTerm))
         ->paginate($this->perPage);
     }
+
+    public function printCertificate($id)
+    {
+        return redirect()->route('generate.certificate', ['memberId' => $id]);
+    }
 }

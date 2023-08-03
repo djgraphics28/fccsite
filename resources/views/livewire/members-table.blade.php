@@ -43,6 +43,7 @@
                         <td>
                             <a href="{{ route('members.edit', $row->id) }}" class="btn btn-warning">Edit</a>
                             <a class="btn btn-danger">Remove</a>
+                            <a wire:click="printCertificate({{ $row->id }})" class="btn btn-primary">Print Cert</a>
                         </td>
                     </tr>
                 @empty
