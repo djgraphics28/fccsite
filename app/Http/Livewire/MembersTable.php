@@ -56,11 +56,21 @@ class MembersTable extends Component
 
     public function printCertificate($id)
     {
+        $id = collect([
+            0 => $id
+        ]);
+
+        $this->selectedRows = $id;
         return redirect()->route('generate.certificate', ['memberId' => $id]);
     }
 
     public function bulkPrint()
     {
-        return redirect()->route('generate.certificate', ['memberId' => $this->selectedRows]);
+        if($this->selectedRows instanceof \Illuminate\Database\Eloquent\Collection){
+            $ids = $this->selectedRows;
+        } else {
+            $ids = collect($this->selectedRows);
+        }
+        return redirect()->route('generate.certificate', ['memberId' => $ids]);
     }
 }

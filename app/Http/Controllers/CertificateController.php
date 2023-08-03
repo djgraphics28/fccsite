@@ -15,7 +15,7 @@ class CertificateController extends Controller
         // $desc = $request->input('desc', 'Lorem Ipsum.'); // Default value if course is not provided
         $backgroundImage = 'assets/cert_templates/baptism_cert.png'; // Background image URL, if provided
         $ids = json_decode($memberIds);
-        $members = Member::whereIn('id', $ids)->get();
+        $members = Member::whereIn('id', $ids)->whereNotNull('date_baptized')->get();
 
         // $data = [
         //     'name' => $member->first_name,
