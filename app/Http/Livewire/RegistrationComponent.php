@@ -51,11 +51,11 @@ class RegistrationComponent extends Component
         }
 
         $data = [
-            'first_name' => ucwords($this->firstName),
-            'middle_name' => ucwords($this->middleName),
-            'last_name' => ucwords($this->lastName),
-            'ext_name' => ucwords($this->extName),
-            'nickname' => ucwords($this->nickname),
+            'first_name' => ucwords(strtolower($this->firstName)),
+            'middle_name' => ucwords(strtolower($this->middleName)),
+            'last_name' => ucwords(strtolower($this->lastName)),
+            'ext_name' => ucwords(strtolower($this->extName)),
+            'nickname' => ucwords(strtolower($this->nickname)),
             'gender' => $this->gender,
             'birth_date' => $this->birthDate,
             'address' => $this->address,
