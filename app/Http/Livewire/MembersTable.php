@@ -58,4 +58,9 @@ class MembersTable extends Component
     {
         return redirect()->route('generate.certificate', ['memberId' => $id]);
     }
+
+    public function bulkPrint()
+    {
+        return redirect()->route('generate.certificate', ['memberId' => $this->selectedRows]);
+    }
 }
