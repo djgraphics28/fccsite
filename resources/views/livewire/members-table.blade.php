@@ -5,10 +5,25 @@
                 <!-- Search Input -->
                 <input type="text" class="form-control" wire:model="searchTerm" placeholder="Search...">
             </div>
+            <select wire:model="perPage" class="form-control col-2">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="500">500</option>
+            </select>
+
+            <select wire:model="sortByGender" class="form-control col-3 ml-3">
+                <option value="">All Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th class="text-center" width="2%"><input type="checkbox" wire:model="selectAll"></th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Gender</th>
@@ -22,6 +37,7 @@
             <tbody>
                 @forelse ($records as $row)
                     <tr>
+                        <td><input type="checkbox" wire:model.prevent="selectedRows" value="{{ $row->id }}"></td>
                         <td>
                             @if ($row->hasMedia('profile_picture'))
                                 <img src="{{ $row->getFirstMediaUrl('profile_picture', 'thumbnail') }}" alt="{{ $row->first_name }}">
@@ -43,7 +59,9 @@
                         <td>
                             <a href="{{ route('members.edit', $row->id) }}" class="btn btn-warning">Edit</a>
                             <a class="btn btn-danger">Remove</a>
-                            <a wire:click="printCertificate({{ $row->id }})" class="btn btn-primary">Print Cert</a>
+                            @if ($row->date_baptized != null || $row->date_baptized != "")
+                                <a wire:click="printCertificate({{ $row->id }})" class="btn btn-primary">Print Cert</a>
+                            @endif
                         </td>
                     </tr>
                 @empty
@@ -56,6 +74,7 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th></th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Gender</th>
