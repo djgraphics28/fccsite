@@ -42,11 +42,11 @@ class MemberController extends Controller
         }
 
         $data = [
-            'first_name' => ucwords($request->firstName),
-            'middle_name' => ucwords($request->middleName),
-            'last_name' => ucwords($request->lastName),
-            'ext_name' => ucwords($request->extName),
-            'nickname' => ucwords($request->nickname),
+            'first_name' => ucwords(strtolower($request->firstName)),
+            'middle_name' => ucwords(strtolower($request->middleName)),
+            'last_name' => ucwords(strtolower($request->lastName)),
+            'ext_name' => ucwords(strtolower($request->extName)),
+            'nickname' => ucwords(strtolower($request->nickname)),
             'gender' => $request->gender,
             'birth_date' => $request->birthDate,
             'address' => $request->address,
@@ -88,11 +88,11 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
 
         $data = [
-            'first_name' => ucwords($request->firstName),
-            'middle_name' => ucwords($request->middleName),
-            'last_name' => ucwords($request->lastName),
-            'ext_name' => ucwords($request->extName),
-            'nickname' => ucwords($request->nickname),
+            'first_name' => ucwords(strtolower($request->firstName)),
+            'middle_name' => ucwords(strtolower($request->middleName)),
+            'last_name' => ucwords(strtolower($request->lastName)),
+            'ext_name' => ucwords(strtolower($request->extName)),
+            'nickname' => ucwords(strtolower($request->nickname)),
             'gender' => $request->gender,
             'birth_date' => $request->birthDate,
             'address' => $request->address,

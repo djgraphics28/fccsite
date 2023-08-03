@@ -30,7 +30,7 @@ class VbsTable extends Component
     public function mount()
     {
         $minAge = 4;
-        $maxAge = 50;
+        $maxAge = 12;
 
         $this->kids = Member::whereRaw("TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) BETWEEN ? AND ?", [$minAge, $maxAge])
             ->where('vbs_added', 0)
