@@ -17,8 +17,12 @@ class MembersTable extends Component
     public $approveConfirmed;
     // filters
     public $perPage = 10;
+    public $sortByGender = '';
 
     protected $paginationTheme = 'bootstrap';
+
+    public $selectAll = false;
+    public $selectedRows = [];
 
     public function render()
     {
@@ -27,9 +31,25 @@ class MembersTable extends Component
         ]);
     }
 
+    public function updatingSearchTerm()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedSelectAll($value)
+    {
+        if($value){
+            $this->selectedRows = $this->records->pluck('id');
+        }else{
+            $this->selectedRows = [];
+        }
+    }
+
     public function getRecordsProperty()
     {
-        return Member::latest()
+        return Member::when($this->sortByGender, function($query){
+            $query->where('gender', $this->sortByGender);
+        })->latest()
         ->search(trim($this->searchTerm))
         ->paginate($this->perPage);
     }
