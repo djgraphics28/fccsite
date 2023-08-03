@@ -72,8 +72,6 @@ class VbsTable extends Component
 
     public function addToVbs($id)
     {
-
-        dd($id);
         $birthDate = Member::find($id)->value('birth_date');
         $age = date_diff(date_create($birthDate), date_create('today'))->y;
 
