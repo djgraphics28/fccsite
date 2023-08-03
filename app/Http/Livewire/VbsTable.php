@@ -77,7 +77,7 @@ class VbsTable extends Component
 
         if ($age >= 4 && $age <= 6) {
             $ageRange = '4 - 6';
-        } else if ($$age >= 7 && $age <= 9) {
+        } else if ($age >= 7 && $age <= 9) {
             $ageRange = '7 - 9';
         } else if ($age >= 10 && $age <= 12) {
             $ageRange = '10 - 12';
