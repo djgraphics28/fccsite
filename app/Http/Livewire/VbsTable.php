@@ -41,6 +41,8 @@ class VbsTable extends Component
 
     public function render()
     {
+
+        // dd($this->records);
         return view('livewire.vbs-table', [
             'records'=> $this->records
         ]);
@@ -57,8 +59,7 @@ class VbsTable extends Component
 
     public function getRecordsProperty()
     {
-        return Vbs::with('member')
-        ->when($this->sortByAgeRange, function($query){
+        return Vbs::with('member')->when($this->sortByAgeRange, function($query){
             $query->where('age_range', $this->sortByAgeRange);
         })
         ->latest()
