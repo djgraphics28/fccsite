@@ -68,7 +68,7 @@ class Member extends Model implements HasMedia
    }
     public function getAgeAttribute()
     {
-        return $this->birth_date ? date_diff(date_create($this->birth_date), date_create('today'))->y : '' ;
+        return $this->birth_date ? date_diff(date_create($this->birth_date), date_create('today'))->y . ' year(s) old' : '' ;
     }
 
     public function registerMediaConversions(Media $media = null): void
