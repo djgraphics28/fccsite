@@ -73,16 +73,16 @@ class VbsTable extends Component
 
     public function addToVbs($id)
     {
-        $birthDate = Member::find($id)->value('birth_date');
-        $age = date_diff(date_create($birthDate), date_create('today'))->y;
-        dd($age);
-        // if ($age >= 4 && $age <= 6) {
-        //     $ageRange = '4 - 6';
-        // } elseif ($age >= 7 && $age <= 9) {
-        //     $ageRange = '7 - 9';
-        // } elseif ($age >= 10 && $age <= 12) {
-        //     $ageRange = '10 - 12';
-        // }
+        $data = Member::find($id);
+        $age = date_diff(date_create($data->birth_date), date_create('today'))->y;
+
+        if ($age >= 4 && $age <= 6) {
+            $ageRange = '4 - 6';
+        } elseif ($age >= 7 && $age <= 9) {
+            $ageRange = '7 - 9';
+        } elseif ($age >= 10 && $age <= 12) {
+            $ageRange = '10 - 12';
+        }
 
         $data = Vbs::updateOrCreate(
             ['member_id' => $id],
