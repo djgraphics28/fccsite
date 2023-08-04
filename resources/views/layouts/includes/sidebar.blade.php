@@ -97,6 +97,22 @@
         </div>
     </li>
 
+    <!-- Nav Item - Certificate Generator Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCertGen"
+            aria-expanded="true" aria-controls="collapseCertGen">
+            <i class="fas fa-fw fa-pdf-alt"></i>
+            <span>Certificate Generator</span>
+        </a>
+        <div id="collapseCertGen" class="collapse" aria-labelledby="headingCertGen" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Manage Certificates:</h6>
+                <a class="collapse-item" href="{{ route('cert-gen.index') }}">View Templates</a>
+                {{-- <a class="collapse-item" href="{{ route('members.index', 1) }}">Verified Members</a> --}}
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

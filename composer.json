@@ -16,6 +16,7 @@
         "livewire/livewire": "^2.12",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.4",
+        "spatie/laravel-backup": "^8.1",
         "spatie/laravel-medialibrary": "^10.0.0",
         "tecnickcom/tcpdf": "^6.6",
         "yoeunes/toastr": "^2.3"

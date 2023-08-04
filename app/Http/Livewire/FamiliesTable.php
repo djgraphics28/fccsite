@@ -29,7 +29,7 @@ class FamiliesTable extends Component
 
     public function getRecordsProperty()
     {
-        return Family::with(['father', 'mother'])->latest()
+        return Family::with(['fatherData', 'motherData'])->latest()
         ->search(trim($this->searchTerm))
         ->paginate($this->perPage);
     }

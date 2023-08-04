@@ -21,8 +21,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $row->family_name }}</td>
-                        <td>{{ $row->father }}</td>
-                        <td>{{ $row->mother }}</td>
+                        <td>{{ $row->fatherData->first_name ?? "" }}</td>
+                        <td>{{ $row->motherData->first_name ?? "" }}</td>
                         <td>
                             <a href="{{ route('families.edit', $row->id) }}" class="btn btn-warning">Edit</a>
                             <a class="btn btn-danger">Remove</a>

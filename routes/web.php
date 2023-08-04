@@ -8,6 +8,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\BirthdayController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\CertificateTemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/birthday-celebrators', [BirthdayController::class, 'index'])->name('birthday.celebrators');
 
     Route::get('/vbs', [VbsController::class, 'index'])->name('vbs.index');
+
+    Route::resource('cert-gen', CertificateTemplateController::class);
 
     Route::get('/generate-certificate/{memberId}', [CertificateController::class, 'generateCertificate'])->name('generate.certificate');
 
