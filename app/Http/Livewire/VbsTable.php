@@ -94,8 +94,9 @@ class VbsTable extends Component
         }
     }
 
-    public function destroy(Vbs $vbs)
+    public function destroy($id)
     {
-        $vbs->destroy();
+        $data = Vbs::findOrFail($id);
+        $data->destroy();
     }
 }
