@@ -38,7 +38,7 @@
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
                                 <label for="summernote">Content</label>
-                                <div id="summernote" name="content"></div>
+                                <textarea id="summernote" name="content"></textarea>
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -50,11 +50,11 @@
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
                                 <label for="summernote">Signatories</label>
-                                <div id="inputContainer">
+                                <div id="inputContainer" class="form-group">
                                     <!-- Initial input field -->
-                                    <input type="text" name="dynamicInput[]" class="dynamicInput" />
+                                    <input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />
                                 </div>
-                                <button type="button" id="addInput">Add More</button>
+                                <button class="btn btn-success" type="button" id="addInput">Add More</button>
                             </div>
                         </div>
 
@@ -90,7 +90,7 @@
 
         $(document).ready(function () {
             $('#addInput').click(function () {
-                $('#inputContainer').append('<input type="text" name="dynamicInput[]" class="dynamicInput" />');
+                $('#inputContainer').append('<input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />');
             });
         });
     </script>
