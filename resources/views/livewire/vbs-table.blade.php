@@ -38,7 +38,7 @@
                         <td>
                             {{-- <a wire:click="members" class="btn btn-primary">Members</a>
                             <a href="{{ route('groups.edit', $row->id) }}" class="btn btn-warning">Edit</a> --}}
-                            <a class="btn btn-danger">Remove</a>
+                            <button wire:click="destroy({{ $row->id }})" class="btn btn-danger">Remove</button>
                         </td>
                     </tr>
                 @empty
