@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $row->name }}</td>
-                        <td>{{ $row->leader->first_name }}</td>
+                        <td>{{ $row->leader->first_name ?? "" }}</td>
                         <td>
                             <a wire:click="members" class="btn btn-primary">Members</a>
                             <a href="{{ route('groups.edit', $row->id) }}" class="btn btn-warning">Edit</a>

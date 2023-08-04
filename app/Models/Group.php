@@ -26,7 +26,7 @@ class Group extends Model
 
     }
 
-    public function members()
+    public function member()
     {
         return $this->belongsToMany(Member::class);
     }

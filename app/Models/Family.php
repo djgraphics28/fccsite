@@ -26,17 +26,17 @@ class Family extends Model
 
     }
 
-    public function members()
+    public function member()
     {
         return $this->belongsToMany(Member::class);
     }
 
-    public function father()
+    public function fatherData()
     {
         return $this->belongsTo(Member::class, 'father', 'id');
     }
 
-    public function mother()
+    public function motherData()
     {
         return $this->belongsTo(Member::class, 'mother', 'id');
     }
