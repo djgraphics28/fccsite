@@ -69,11 +69,10 @@
                         <td>{{ $row->contact_number }}</td>
                         <td>{{ $row->address }}</td>
                         <td>
-                            <a href="{{ route('members.edit', $row->id) }}" class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger">Remove</a>
+                            <a href="{{ route('members.edit', $row->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                             @if ($row->date_baptized != null || $row->date_baptized != '')
-                                <a wire:click="printCertificate({{ $row->id }})" class="btn btn-primary">Print
-                                    Cert</a>
+                                <a wire:click="printCertificate({{ $row->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a>
                             @endif
                         </td>
                     </tr>
