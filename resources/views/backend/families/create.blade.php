@@ -38,7 +38,7 @@
                                     id="father" name="father">
                                     <option value="">Select Father</option>
                                     @foreach ($members as $item)
-                                        <option value="{{ $item->id }}">{{ $item->first_name }}</option>
+                                        <option value="{{ $item->id }}">{{ $item->first_name ?? "" }} {{ $item->last_name ?? "" }} {{ $item->ext_name ?? "" }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -48,7 +48,7 @@
                                     id="father" name="mother">
                                     <option value="">Select Mother</option>
                                     @foreach ($members as $item)
-                                        <option value="{{ $item->id }}">{{ $item->first_name }}</option>
+                                        <option value="{{ $item->id }}">{{ $item->first_name ?? "" }} {{ $item->last_name ?? "" }}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class CertificateTemplate extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'content',
+        'signatories',
+    ];
 }

@@ -39,7 +39,7 @@
                                     id="leader" name="leader">
                                     <option value="">Select Leader</option>
                                     @foreach ($members  as $item)
-                                        <option {{ $item->id == $group->member_id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name }}</option>
+                                        <option {{ $item->id == $group->member_id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name ?? "" }} {{ $item->last_name ?? "" }}</option>
                                     @endforeach
                                 </select>
                                 @error('leader')

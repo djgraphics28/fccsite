@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CertificateTemplateStoreRequest;
 use App\Models\CertificateTemplate;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,20 @@ class CertificateTemplateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CertificateTemplateStoreRequest $request)
     {
-        //
+        $data = [
+            'title' => strtoupper($request->title),
+            'content' => $request->content,
+            'signatories' => json_encode($request->signatories),
+        ];
+
+        $data = CertificateTemplate::create($data);
+
+        if($data) {
+            toastr()->success('New Certificate Template has been created successfully!');
+            return redirect()->route('cert-gen.index');
+        }
     }
 
     /**
