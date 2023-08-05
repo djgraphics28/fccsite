@@ -39,7 +39,7 @@
                                     id="father" name="father">
                                     <option value="">Select Father</option>
                                     @foreach ($members as $item)
-                                        <option {{ $item->id == $family->father ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name }}</option>
+                                        <option {{ $item->id == $family->father ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name ?? "" }} {{ $item->last_name ?? "" }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -49,7 +49,7 @@
                                     id="father" name="mother">
                                     <option value="">Select Mother</option>
                                     @foreach ($members as $item)
-                                        <option {{ $item->id == $family->mother ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name }}</option>
+                                        <option {{ $item->id == $family->mother ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->first_name ?? "" }} {{ $item->last_name ?? "" }}</option>
                                     @endforeach
                                 </select>
                             </div>

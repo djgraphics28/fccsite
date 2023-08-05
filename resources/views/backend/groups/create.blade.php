@@ -38,7 +38,7 @@
                                     id="leader" name="leader">
                                     <option value="">Select Leader</option>
                                     @foreach ($members as $item)
-                                        <option value="{{ $item->id }}">{{ $item->first_name }}</option>
+                                        <option value="{{ $item->id }}">{{ $item->first_name ?? "" }} {{ $item->last_name ?? "" }}</option>
                                     @endforeach
                                 </select>
                                 @error('leader')
