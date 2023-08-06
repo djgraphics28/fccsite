@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    <title>Member Certificate</title>
+    <title>{{ $title }}</title>
     <!-- Add other CSS styles for your certificate design -->
 </head>
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-image: url('assets/cert_templates/baptism_cert.png');
+        background-image: url('assets/cert_templates/vbs.png');
         background-size: cover;
         background-repeat: no-repeat;
         margin: 0;
@@ -24,7 +24,7 @@
 
     .certificate {
         text-align: center;
-        border: 1px solid #000;
+        /* border: 1px solid #000; */
         padding: 20px;
         width: 700px;
         margin: 0 auto;
@@ -58,9 +58,16 @@
     <div class="certificate-container">
         @foreach ($members as $item => $value)
             <div class="certificate">
-                <h1>Member Certificate</h1>
-                <p>This is to certify that {{ $value->first_name }} has been a valued member of our community.</p>
-                <p>Issued on: {{ date('Y-m-d') }}</p>
+                <h1>{{ $title }}</h1>
+                <h1>{{ strtoupper($value->first_name)." ".strtoupper($value->last_name)}}</h1>
+
+                {!! $content !!}
+
+                <p>Issued on: {{ date('F j, Y') }}</p>
+                <br>
+                @foreach ($signatories as $sig)
+                    <u><span>{{ $sig }}</span></u>
+                @endforeach
             </div>
             @if ($item < count($members) - 1)
                 <div class="page-break"></div>

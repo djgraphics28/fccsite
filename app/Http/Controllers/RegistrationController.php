@@ -24,4 +24,14 @@ class RegistrationController extends Controller
         $isFirstTime = $data->is_first_time;
         return view('success', compact('name','isFirstTime'));
     }
+
+    public function submitESignature($id)
+    {
+        return view('submit-e-signature');
+    }
+
+    public function storeSignature(Request $request)
+    {
+        dd($request->all());
+    }
 }
