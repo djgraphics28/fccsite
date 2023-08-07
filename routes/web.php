@@ -25,6 +25,10 @@ Route::get('/registration',[RegistrationController::class, 'index'])->name('regi
 Route::post('/registration',[RegistrationController::class, 'store'])->name('registration.store');
 Route::get('/success/{id}',[RegistrationController::class, 'success'])->name('registration.success');
 
+//Signature
+Route::get('/submit-e-signature/{id}', [RegistrationController::class, 'submitESignature'])->name('e-signature');
+Route::post('/signature-store', [RegistrationController::class, 'storeSignature'])->name('signature.store');
+
 Auth::routes(['register'=>false]);
 
 Route::group(['middleware' => 'auth'], function() {

@@ -74,6 +74,8 @@
                             @if ($row->date_baptized != null || $row->date_baptized != '')
                                 <a wire:click="printCertificate({{ $row->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a>
                             @endif
+                            <a href="{{ route('e-signature', $row->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-link" aria-hidden="true"></i></a>
+
                         </td>
                     </tr>
                 @empty
