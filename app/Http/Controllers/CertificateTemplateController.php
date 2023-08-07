@@ -39,7 +39,7 @@ class CertificateTemplateController extends Controller
 
         if($data) {
             toastr()->success('New Certificate Template has been created successfully!');
-            return redirect()->route('cert-gen.index');
+            return redirect()->route('cert.index');
         }
     }
 
@@ -54,17 +54,28 @@ class CertificateTemplateController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CertificateTemplate $certificateTemplate)
+    public function edit($id)
     {
-        //
+        $certgen = CertificateTemplate::find($id);
+        return view('backend.certificate_maker.edit', compact('certgen'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CertificateTemplate $certificateTemplate)
+    public function update(Request $request, string $id)
     {
-        //
+        $certgen = CertificateTemplate::findOrFail($id);
+
+        $data = [
+            'title' => ucwords($request->title),
+            'content' => $request->content,
+            'signatories' => json_encode($request->signatories),
+        ];
+
+        $certgen->update($data);
+
+        return redirect()->route('cert.index')->with('success', 'Certificate Template Info is updated successfully!');
     }
 
     /**

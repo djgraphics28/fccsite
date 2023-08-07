@@ -23,9 +23,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                @if ($selectedRows)
-                    <button wire:click="bulkPrint" class="btn btn-primary">Print Certificate</button>
-                @endif
+                <button wire:click="showCertModal" class="btn btn-primary">Print Certificate</button>
             </div>
         </div>
         <table class="table table-hover">
@@ -69,12 +67,15 @@
                         <td>{{ $row->contact_number }}</td>
                         <td>{{ $row->address }}</td>
                         <td>
-                            <a href="{{ route('members.edit', $row->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                            <a href="{{ route('members.edit', $row->id) }}" class="btn btn-warning btn-sm"><i
+                                    class="fas fa-edit"></i></a>
                             <a class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                             @if ($row->date_baptized != null || $row->date_baptized != '')
-                                <a wire:click="printCertificate({{ $row->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a>
+                                <a wire:click="printCertificate({{ $row->id }})" class="btn btn-primary btn-sm"><i
+                                        class="fas fa-print"></i></a>
                             @endif
-                            <a href="{{ route('e-signature', $row->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-link" aria-hidden="true"></i></a>
+                            <a href="{{ route('e-signature', $row->id) }}" target="_blank"
+                                class="btn btn-info btn-sm"><i class="fa fa-link" aria-hidden="true"></i></a>
 
                         </td>
                     </tr>
@@ -104,4 +105,50 @@
 
 
     {{ $records->links() }}
+
+    <!-- cert Options -->
+    <div class="modal fade" id="printModalOption" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Choose Certificate Template</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        @forelse ($certTemp as $temp)
+                            <div class="form-check">
+                                <input class="form-check-input" wire:model="certOption" value="{{ $temp->id }}"
+                                    type="radio" name="option" id="option{{ $temp->id }}">
+                                <label class="form-check-label" for="option{{ $temp->id }}">
+                                    {{ $temp->title }}
+                                </label>
+                            </div>
+                        @empty
+                        @endforelse
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button wire:click="bulkPrint" class="btn btn-primary">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@push('scripts')
+    <script>
+        window.addEventListener('show-cert', event => {
+            $('#printModalOption').modal('show');
+        })
+
+        window.addEventListener('hide-cert', event => {
+            $('#printModalOption').modal('hide');
+        })
+    </script>
+@endpush

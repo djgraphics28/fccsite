@@ -107,7 +107,7 @@
         <div id="collapseCertGen" class="collapse" aria-labelledby="headingCertGen" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage Certificates:</h6>
-                <a class="collapse-item" href="{{ route('cert-gen.index') }}">View Templates</a>
+                <a class="collapse-item" href="{{ route('cert.index') }}">View Templates</a>
                 {{-- <a class="collapse-item" href="{{ route('members.index', 1) }}">Verified Members</a> --}}
             </div>
         </div>

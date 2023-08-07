@@ -14,4 +14,15 @@ class CertificateTemplate extends Model
         'content',
         'signatories',
     ];
+
+    public function scopeSearch($query, $searchTerm)
+    {
+        $searchTerm = "%$searchTerm%";
+
+        $query->where(function($query) use ($searchTerm){
+
+            $query->where('title','like', $searchTerm);
+        });
+
+    }
 }
