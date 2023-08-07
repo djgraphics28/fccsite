@@ -31,7 +31,7 @@
             <tbody>
                 @forelse ($records as $row)
                     <tr>
-                        <td><input type="checkbox" wire:model.prevent="selectedRows" value="{{ $row->id }}"></td>
+                        <td><input type="checkbox" wire:model.prevent="selectedRows" value="{{ $row->member_id }}"></td>
                         <td>{{ $row->member->first_name }} {{ $row->member->last_name }}</td>
                         <td>{{ $row->member->gender }}</td>
                         <td>{{ $row->member->age }}</td>
