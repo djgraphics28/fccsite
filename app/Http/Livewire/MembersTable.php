@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Member;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\CertificateTemplate;
 
 class MembersTable extends Component
 {
@@ -23,6 +24,13 @@ class MembersTable extends Component
 
     public $selectAll = false;
     public $selectedRows = [];
+    public $certTemp = [];
+    public $certOption;
+
+    public function mount()
+    {
+        $this->certTemp = CertificateTemplate::all();
+    }
 
     public function render()
     {
@@ -64,13 +72,20 @@ class MembersTable extends Component
         return redirect()->route('generate.certificate', ['memberId' => $id]);
     }
 
+    public function showCertModal()
+    {
+        $this->dispatchBrowserEvent('show-cert');
+    }
+
     public function bulkPrint()
     {
+        $tempId = $this->certOption;
+
         if($this->selectedRows instanceof \Illuminate\Database\Eloquent\Collection){
             $ids = $this->selectedRows;
         } else {
             $ids = collect($this->selectedRows);
         }
-        return redirect()->route('generate.certificate', ['memberId' => $ids]);
+        return redirect()->route('generate.certificate', ['memberId' => $ids, 'tempId'=>$tempId]);
     }
 }

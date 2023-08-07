@@ -14,7 +14,7 @@
                 </select>
             </div>
             <div class="col-md-5 mb-2">
-                <button class="btn btn-primary">Generate Certificate</button>
+                <button wire:click="showCertModal" class="btn btn-primary">Generate Certificate</button>
                 <button wire:click="showMembers" class="btn btn-success">Add Member</button>
             </div>
         </div>
@@ -109,6 +109,40 @@
             </div>
         </div>
     </div>
+
+    <!-- cert Options -->
+    <div class="modal fade" id="printModalOption" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Choose Certificate Template</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        @forelse ($certTemp as $temp)
+                            <div class="form-check">
+                                <input class="form-check-input" wire:model="certOption" value="{{ $temp->id }}"
+                                    type="radio" name="option" id="option{{ $temp->id }}">
+                                <label class="form-check-label" for="option{{ $temp->id }}">
+                                    {{ $temp->title }}
+                                </label>
+                            </div>
+                        @empty
+                        @endforelse
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button wire:click="bulkPrint" class="btn btn-primary">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -123,43 +157,12 @@
             $('#addModal').modal('hide');
         })
 
-        window.addEventListener('swal:modal', event => {
-            swal({
-                title: event.detail.message,
-                text: event.detail.text,
-                icon: event.detail.type,
-            });
-        });
+        window.addEventListener('show-cert', event => {
+            $('#printModalOption').modal('show');
+        })
 
-        // window.addEventListener('swal:password', event => {
-        //     swal({
-        //             content: {
-        //                 element: "input",
-        //                 attributes: {
-        //                     placeholder: "Type your password",
-        //                     type: "password",
-        //                 },
-        //             },
-        //         })
-        //         .then((value) => {
-        //             // swal(`You typed: ${value}`);
-        //         });
-        // });
-
-        // window.addEventListener('swal:confirm', event => {
-        //     swal({
-        //             title: event.detail.message,
-        //             text: event.detail.text,
-        //             icon: event.detail.type,
-        //             buttons: true,
-        //             dangerMode: true,
-
-        //         })
-        //         .then((willDelete) => {
-        //             if (willDelete) {
-        //                 window.livewire.emit('remove');
-        //             }
-        //         });
-        // });
+        window.addEventListener('hide-cert', event => {
+            $('#printModalOption').modal('hide');
+        })
     </script>
 @endpush

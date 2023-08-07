@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Create Certificate Template</h1>
-        <a href="{{ route('cert-gen.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i
+        <a href="{{ route('cert.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i
                 class="fas fa-arrow-left fa-md text-white-50"></i> Back</a>
     </div>
 
@@ -19,7 +19,7 @@
                     <h4>Create Certificate Template Form</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('cert-gen.store') }}" method="POST">
+                    <form action="{{ route('cert.store') }}" method="POST">
                         @csrf
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -78,19 +78,27 @@
             tabsize: 2,
             height: 120,
             toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
+                // ['style', ['style']],
+                // ['font', ['bold', 'underline', 'clear']],
+                // ['color', ['color']],
+                // ['para', ['ul', 'ol', 'paragraph']],
+                // ['table', ['table']],
+                // ['insert', ['link', 'picture', 'video']],
+                // ['view', ['fullscreen', 'codeview', 'help']]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
+                ['height', ['height']]
             ]
         });
 
-        $(document).ready(function () {
-            $('#addInput').click(function () {
-                $('#inputContainer').append('<input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />');
+        $(document).ready(function() {
+            $('#addInput').click(function() {
+                $('#inputContainer').append(
+                    '<input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />');
             });
         });
     </script>

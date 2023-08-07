@@ -44,9 +44,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/vbs', [VbsController::class, 'index'])->name('vbs.index');
 
-    Route::resource('cert-gen', CertificateTemplateController::class);
+    Route::resource('cert', CertificateTemplateController::class);
 
-    Route::get('/generate-certificate/{memberId}', [CertificateController::class, 'generateCertificate'])->name('generate.certificate');
+    Route::get('/generate-certificate/{memberId}/{tempId}', [CertificateController::class, 'generateCertificate'])->name('generate.certificate');
 
 });
 

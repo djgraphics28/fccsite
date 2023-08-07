@@ -7,6 +7,7 @@ use App\Models\Member;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
+use App\Models\CertificateTemplate;
 
 class VbsTable extends Component
 {
@@ -27,6 +28,9 @@ class VbsTable extends Component
     public $selectAll = false;
     public $selectedRows = [];
 
+    public $certTemp = [];
+    public $certOption;
+
     public function mount()
     {
         $minAge = 4;
@@ -36,6 +40,8 @@ class VbsTable extends Component
             ->where('vbs_added', 0)
             ->orderBy(DB::raw("TIMESTAMPDIFF(YEAR, birth_date, CURDATE())"), 'asc')
             ->get();
+
+        $this->certTemp = CertificateTemplate::all();
 
     }
 
@@ -51,7 +57,7 @@ class VbsTable extends Component
     public function updatedSelectAll($value)
     {
         if($value){
-            $this->selectedRows = $this->records->pluck('id');
+            $this->selectedRows = $this->records->pluck('member_id');
         }else{
             $this->selectedRows = [];
         }
@@ -98,5 +104,22 @@ class VbsTable extends Component
     {
         $data = Vbs::findOrFail($id);
         $data->delete();
+    }
+
+    public function showCertModal()
+    {
+        $this->dispatchBrowserEvent('show-cert');
+    }
+
+    public function bulkPrint()
+    {
+        $tempId = $this->certOption;
+
+        if($this->selectedRows instanceof \Illuminate\Database\Eloquent\Collection){
+            $ids = $this->selectedRows;
+        } else {
+            $ids = collect($this->selectedRows);
+        }
+        return redirect()->route('generate.certificate', ['memberId' => $ids, 'tempId'=>$tempId]);
     }
 }
