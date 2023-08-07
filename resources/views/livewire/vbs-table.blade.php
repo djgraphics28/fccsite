@@ -1,9 +1,19 @@
 <div>
     <div class="table-responsive">
         <div class="row mb-4">
-            <div class="col-md-4 mb-2">
+            <div class="col-md-3 mb-2">
                 <!-- Search Input -->
                 <input type="text" class="form-control" wire:model="searchTerm" placeholder="Search...">
+            </div>
+            <div class="col-md-2 mb-2">
+                <select wire:model="perPage" class="form-control">
+                    <option value="5">5 rows</option>
+                    <option value="10">10 rows</option>
+                    <option value="25">25 rows</option>
+                    <option value="50">50 rows</option>
+                    <option value="100">100 rows</option>
+                    <option value="500">500 rows</option>
+                </select>
             </div>
             <div class="col-md-3 mb-2">
                 <select wire:model="sortByAgeRange" class="form-control mr-2">
@@ -13,7 +23,7 @@
                     <option value="10 - 12">10 - 12</option>
                 </select>
             </div>
-            <div class="col-md-5 mb-2">
+            <div class="col-md-4 mb-2">
                 <button wire:click="showCertModal" class="btn btn-primary">Generate Certificate</button>
                 <button wire:click="showMembers" class="btn btn-success">Add Member</button>
             </div>
