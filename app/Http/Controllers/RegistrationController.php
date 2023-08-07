@@ -27,11 +27,19 @@ class RegistrationController extends Controller
 
     public function submitESignature($id)
     {
-        return view('submit-e-signature');
+        return view('submit-e-signature', compact('id'));
     }
 
     public function storeSignature(Request $request)
     {
-        dd($request->all());
+        $data = Member::findOrFail($request->memberId);
+        $data->updateOrCreate(
+            [
+                'id' => $request->memberId
+            ],
+            [
+                'id' => $request->memberId, 'e_signature' => $request->signature
+            ]);
+        return response()->json(['message' => $data->first_name.' E-Signature submitted successfully']);
     }
 }

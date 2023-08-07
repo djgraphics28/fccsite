@@ -36,6 +36,7 @@ class Member extends Model implements HasMedia
         'is_first_time',
         'is_active',
         'is_approved',
+        'e_signature',
     ];
 
     public function scopeSearch($query, $searchTerm)
