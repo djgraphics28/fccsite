@@ -113,6 +113,22 @@
         </div>
     </li>
 
+    <!-- Nav Item - Users Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+            aria-expanded="true" aria-controls="collapseUsers">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Users</span>
+        </a>
+        <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Manage Users:</h6>
+                <a class="collapse-item" href="{{ route('users.index') }}">View User Lists</a>
+                {{-- <a class="collapse-item" href="{{ route('members.index', 1) }}">Verified Members</a> --}}
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

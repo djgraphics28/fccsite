@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VbsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\MemberController;
@@ -33,6 +34,9 @@ Auth::routes(['register'=>false]);
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::resource('users', UserController::class);
+    Route::get('/roles', [UserController::class, 'getRoles'])->name('roles');
 
     Route::resource('members', MemberController::class);
 
