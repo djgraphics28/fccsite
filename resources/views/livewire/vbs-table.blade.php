@@ -32,6 +32,7 @@
             <thead>
                 <tr>
                     <th class="text-center" width="2%"><input type="checkbox" wire:model="selectAll"></th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Gender</th>
                     <th>Age</th>
@@ -42,6 +43,20 @@
                 @forelse ($records as $row)
                     <tr>
                         <td><input type="checkbox" wire:model.prevent="selectedRows" value="{{ $row->member_id }}"></td>
+                        <td>
+                            @if ($row->member->hasMedia('profile_picture'))
+                                <img width="50px" src="{{ $row->member->getFirstMediaUrl('profile_picture', 'thumbnail') }}"
+                                    alt="{{ $row->member->first_name }}">
+                            @else
+                                @if ($row->member->gender == 'Male')
+                                    <img width="50px" src="{{ asset('assets/img/profile_image/male.png') }}"
+                                        alt="">
+                                @else
+                                    <img width="50px" src="{{ asset('assets/img/profile_image/female.png') }}"
+                                        alt="">
+                                @endif
+                            @endif
+                        </td>
                         <td>{{ $row->member->first_name }} {{ $row->member->last_name }}</td>
                         <td>{{ $row->member->gender }}</td>
                         <td>{{ $row->member->age }}</td>
