@@ -19,7 +19,7 @@
                     <h4>Create Certificate Template Form</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('cert.store') }}" method="POST">
+                    <form action="{{ route('cert.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -50,12 +50,31 @@
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
                                 <label for="summernote">Signatories</label>
-                                <div id="inputContainer" class="form-group">
+                                <div id="inputContainer" class="form-group row">
                                     <!-- Initial input field -->
-                                    <input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />
+                                    {{-- <input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" /> --}}
+                                    <div class="col-md-3 mb-2">
+                                        <select name="signatories[]" class="form-control">
+                                            <option value="">Choose</option>
+                                            @forelse ($members as $member)
+                                                <option value="{{ $member->id }}"> {{ $member->first_name }} {{ $member->last_name }}</option>
+                                            @empty
+
+                                            @endforelse
+                                        </select>
+                                    </div>
+
                                 </div>
                                 <button class="btn btn-success" type="button" id="addInput">Add More</button>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="certificate_background_input">Background Image</label>
+                            <input class="form-control form-control-lg" type="file" name="background"
+                                id="certificate_background_input">
+                            <img class="mt-3" width="500px" id="selected_image" src="" alt="Selected Background Image"
+                                style="display: none;">
                         </div>
 
                         <button class="btn btn-primary mt-4 float-right">Submit</button>
@@ -100,8 +119,40 @@
         $(document).ready(function() {
             $('#addInput').click(function() {
                 $('#inputContainer').append(
-                    '<input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />');
+                    // '<input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />'
+                    '<div class="col-md-3 mb-2">' +
+                        '<select name="signatories[]" class="form-control">' +
+                            '<option value="">Choose</option> ' +
+                            '@forelse ($members as $member)' +
+                                '<option value="{{ $member->id }}"> {{ $member->first_name }} {{ $member->last_name }}</option>' +
+                            '@empty' +
+
+                            '@endforelse' +
+                        '</select>' +
+                    '</div>'
+                );
             });
+        });
+    </script>
+
+    <script>
+        document.getElementById('certificate_background_input').addEventListener('change', function(event) {
+            const fileInput = event.target;
+            const selectedImage = document.getElementById('selected_image');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    selectedImage.src = e.target.result;
+                    selectedImage.style.display = 'block'; // Show the selected image
+                }
+
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                selectedImage.src = '';
+                selectedImage.style.display = 'none'; // Hide the selected image
+            }
         });
     </script>
 @endpush

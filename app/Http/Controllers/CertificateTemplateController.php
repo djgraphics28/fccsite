@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CertificateTemplateStoreRequest;
-use App\Models\CertificateTemplate;
+use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Models\CertificateTemplate;
+use App\Http\Requests\CertificateTemplateStoreRequest;
 
 class CertificateTemplateController extends Controller
 {
@@ -21,7 +22,8 @@ class CertificateTemplateController extends Controller
      */
     public function create()
     {
-        return view('backend.certificate_maker.create');
+        $members = Member::all();
+        return view('backend.certificate_maker.create', compact('members'));
     }
 
     /**
@@ -29,6 +31,8 @@ class CertificateTemplateController extends Controller
      */
     public function store(CertificateTemplateStoreRequest $request)
     {
+
+        // dd($request->all());
         $data = [
             'title' => strtoupper($request->title),
             'content' => $request->content,
@@ -36,6 +40,12 @@ class CertificateTemplateController extends Controller
         ];
 
         $data = CertificateTemplate::create($data);
+
+        // Upload certificate background picture if provided
+        if ($request->hasFile('background')) {
+            $data->addMediaFromRequest('background')
+                ->toMediaCollection('background');
+        }
 
         if($data) {
             toastr()->success('New Certificate Template has been created successfully!');
@@ -56,8 +66,9 @@ class CertificateTemplateController extends Controller
      */
     public function edit($id)
     {
+        $members = Member::all();
         $certgen = CertificateTemplate::find($id);
-        return view('backend.certificate_maker.edit', compact('certgen'));
+        return view('backend.certificate_maker.edit', compact('certgen', 'members'));
     }
 
     /**
@@ -74,6 +85,12 @@ class CertificateTemplateController extends Controller
         ];
 
         $certgen->update($data);
+
+        // Upload certificate background picture if provided
+        if ($request->hasFile('background')) {
+            $certgen->addMediaFromRequest('background')
+                ->toMediaCollection('background');
+        }
 
         return redirect()->route('cert.index')->with('success', 'Certificate Template Info is updated successfully!');
     }

@@ -37,6 +37,7 @@ class Member extends Model implements HasMedia
         'is_active',
         'is_approved',
         'e_signature',
+        'position',
     ];
 
     public function scopeSearch($query, $searchTerm)

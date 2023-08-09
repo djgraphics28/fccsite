@@ -110,6 +110,11 @@
                                 name="contactNumber" value="{{ $member->contact_number ?? '' }}">
                         </div>
                         <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="text" class="form-control form-control-lg" id="position" value="{{ $member->position ?? '' }}"
+                                name="position">
+                        </div>
+                        <div class="form-group">
                             <label for="address">Address</label>
                             <textarea class="form-control" cols="30" rows="3" name="address">{{ $member->address ?? '' }}</textarea>
                         </div>

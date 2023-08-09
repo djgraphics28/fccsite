@@ -168,7 +168,7 @@
             <script type="text/javascript">
                 var sig = $('#sig').signature({
                     syncField: '#signature64',
-                    syncFormat: 'json'
+                    syncFormat: 'PNG'
                 });
                 $('#clear').click(function(e) {
                     e.preventDefault();

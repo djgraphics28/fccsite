@@ -17,7 +17,7 @@
                     <h4>Create New Member Form</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('members.store') }}" method="POST">
+                    <form action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="isFirstTime">First Timer?</label>
@@ -105,6 +105,11 @@
                             <label for="contactNumber">Contact Number</label>
                             <input type="number" class="form-control form-control-lg" id="contactNumber"
                                 name="contactNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="text" class="form-control form-control-lg" id="position"
+                                name="position">
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
