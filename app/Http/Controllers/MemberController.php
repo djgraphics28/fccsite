@@ -59,6 +59,12 @@ class MemberController extends Controller
 
         $data = Member::create($data);
 
+        // Upload profile picture if provided
+        if ($request->hasFile('profile_picture')) {
+        $member->addMediaFromRequest('profile_picture')
+            ->toMediaCollection('profile_picture');
+        }
+
         if($data) {
             toastr()->success('New Member has been created successfully!');
             return redirect()->route('members.index');
@@ -84,9 +90,8 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(MemberUpdateRequest $request, string $id)
+    public function update(MemberUpdateRequest $request, Member $member)
     {
-        $member = Member::findOrFail($id);
 
         $data = [
             'first_name' => ucwords(strtolower($request->firstName)),
@@ -104,6 +109,12 @@ class MemberController extends Controller
         ];
 
         $member->update($data);
+
+        // Upload profile picture if provided
+        if ($request->hasFile('profile_picture')) {
+            $member->addMediaFromRequest('profile_picture')
+                ->toMediaCollection('profile_picture');
+        }
 
         return redirect()->route('members.index')->with('success', 'Member Info is updated successfully!');
     }

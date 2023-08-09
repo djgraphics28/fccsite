@@ -17,7 +17,7 @@
                     <h4>Edit Member Form</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('members.update', $member->id) }}" method="POST">
+                    <form action="{{ route('members.update', $member->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -122,6 +122,14 @@
                             <label for="dateBaptized">Date Baptized</label>
                             <input type="date" class="form-control form-control-lg" id="dateBaptized"
                                 name="dateBaptized" value="{{ $member->date_baptized ?? '' }}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profile_picture_input">Image</label>
+                            <input class="form-control form-control-lg" type="file" name="profile_picture"
+                                id="profile_picture_input">
+                            <img width="200px" id="selected_image" src="{{ $member->getFirstMediaUrl('profile_picture', 'thumbnail') }}" alt="Selected Profile Picture"  style="display: {{ $member->hasMedia('profile_picture') ? 'block' : 'none' }});">
                         </div>
 
                         <button class="btn btn-success mt-4 float-right">Update</button>
@@ -131,3 +139,26 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('profile_picture_input').addEventListener('change', function(event) {
+            const fileInput = event.target;
+            const selectedImage = document.getElementById('selected_image');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    selectedImage.src = e.target.result;
+                    selectedImage.style.display = 'block'; // Show the selected image
+                }
+
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                selectedImage.src = '';
+                selectedImage.style.display = 'none'; // Hide the selected image
+            }
+        });
+    </script>
+@endpush

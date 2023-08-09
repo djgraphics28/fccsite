@@ -84,4 +84,10 @@ class Member extends Model implements HasMedia
     {
         return $this->hasMany(Vbs::class, 'member_id', 'id');
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('profile_picture')
+            ->singleFile(); // Allow only one file in the collection
+    }
 }

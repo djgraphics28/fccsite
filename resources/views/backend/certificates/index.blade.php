@@ -19,16 +19,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 200vh;
     }
 
     .certificate {
         text-align: center;
         /* border: 1px solid #000; */
         padding: 20px;
-        width: 700px;
+        width: 1000px;
         margin: 0 auto;
-        margin-top: 200px;
+        margin-top: 150px;
     }
 
     h1 {
@@ -58,10 +58,11 @@
     <div class="certificate-container">
         @foreach ($members as $item => $value)
             <div class="certificate">
-                <h1>{{ $title }}</h1>
-                <h1>{{ strtoupper($value->first_name)." ".strtoupper($value->last_name)}}</h1>
-
-                {!! $content !!}
+                @php
+                    $variableValue = strtoupper($value->first_name)." ".strtoupper($value->last_name); // Replace with your actual variable value
+                    $modifiedContent = str_replace('{name}', $variableValue, $content);
+                @endphp
+                {!! $modifiedContent !!}
 
                 <p>Issued on: {{ date('F j, Y') }}</p>
                 <br>

@@ -46,7 +46,7 @@
                         <td><input type="checkbox" wire:model.prevent="selectedRows" value="{{ $row->id }}"></td>
                         <td>
                             @if ($row->hasMedia('profile_picture'))
-                                <img src="{{ $row->getFirstMediaUrl('profile_picture', 'thumbnail') }}"
+                                <img width="50px" src="{{ $row->getFirstMediaUrl('profile_picture', 'thumbnail') }}"
                                     alt="{{ $row->first_name }}">
                             @else
                                 @if ($row->gender == 'Male')

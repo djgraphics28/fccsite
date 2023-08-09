@@ -51,6 +51,10 @@ class CertificateController extends Controller
         $template = CertificateTemplate::find($templateId);
         $title = $template->title;
         $content = $template->content;
+        // // Replace variable placeholder
+        // $name = 'This is the value to replace'; // Replace with your actual variable value
+        // $modifiedContent = str_replace('{variable_name}', $variableValue, $content);
+
         $signatories = json_decode($template->signatories, true);
 
         $backgroundImage = 'assets/cert_templates/vbs.png'; // Background image URL, if provided
