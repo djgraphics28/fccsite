@@ -55,6 +55,7 @@ class MemberController extends Controller
             'email' => $request->email,
             'date_baptized' => $request->dateBaptized,
             'is_first_time' => $request->isFirstTime,
+            'position' => $request->position,
         ];
 
         $data = Member::create($data);
@@ -106,10 +107,10 @@ class MemberController extends Controller
             'email' => $request->email,
             'date_baptized' => $request->dateBaptized,
             'is_first_time' => $request->isFirstTime,
+            'position' => $request->position,
         ];
 
         $member->update($data);
-
         // Upload profile picture if provided
         if ($request->hasFile('profile_picture')) {
             $member->addMediaFromRequest('profile_picture')

@@ -6,6 +6,7 @@ use PDF;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Models\CertificateTemplate;
+use Intervention\Image\Facades\Image;
 
 class CertificateController extends Controller
 {
@@ -49,19 +50,23 @@ class CertificateController extends Controller
     public function generateCertificate($memberIds, $templateId = 1)
     {
         $template = CertificateTemplate::find($templateId);
-        $title = $template->title;
-        $content = $template->content;
+
+        $sigIds = json_decode($template->signatories, true);
+
+        $signatories = Member::whereIn('id', $sigIds)->get();
+        // $title = $template->title;
+        // $content = $template->content;
         // // Replace variable placeholder
         // $name = 'This is the value to replace'; // Replace with your actual variable value
         // $modifiedContent = str_replace('{variable_name}', $variableValue, $content);
 
-        $signatories = json_decode($template->signatories, true);
+        // $signatories = json_decode($template->signatories, true);
 
         $backgroundImage = 'assets/cert_templates/vbs.png'; // Background image URL, if provided
         $ids = json_decode($memberIds);
         $members = Member::whereIn('id', $ids)->get();
 
-        $pdf = PDF::loadView('backend.certificates.index', compact('members', 'title', 'content', 'signatories'));
+        $pdf = PDF::loadView('backend.certificates.index', compact('members', 'template', 'signatories'));
 
         $pdf->setOption('margin', 0);
         $pdf->setOption('padding', 0);

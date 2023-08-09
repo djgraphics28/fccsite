@@ -19,15 +19,15 @@
                     <h4>Edit Certificate Template Form</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('cert.update', $certgen->id) }}" method="POST">
+                    <form action="{{ route('cert.update', $certgen->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="title">Title</label>
                                 <input type="text"
-                                    class="form-control form-control-lg @error('title') is-invalid @enderror" id="title" value="{{ $certgen->title }}"
-                                    name="title">
+                                    class="form-control form-control-lg @error('title') is-invalid @enderror" id="title"
+                                    value="{{ $certgen->title }}" name="title">
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -54,14 +54,42 @@
                                 <div id="inputContainer" class="form-group">
                                     <!-- Initial input field -->
                                     @forelse (json_decode($certgen->signatories, true) as $item)
-                                        <input type="text" name="signatories[]" value="{{ $item }}" class="form-control col-3 mb-2 mr-2" />
+                                        <div class="col-md-3 mb-2">
+                                            <select name="signatories[]" class="form-control">
+                                                <option value="">Choose</option>
+                                                @forelse ($members as $member)
+                                                    <option {{ $item ==  $member->id ? 'selected' : ''}} value="{{ $member->id }}"> {{ $member->first_name }} {{ $member->last_name }}</option>
+                                                @empty
+
+                                                @endforelse
+                                            </select>
+                                        </div>
                                     @empty
-                                        <input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />
+                                        <div class="col-md-3 mb-2">
+                                            <select name="signatories[]" class="form-control">
+                                                <option value="">Choose</option>
+                                                @forelse ($members as $member)
+                                                    <option value="{{ $member->id }}"> {{ $member->first_name }} {{ $member->last_name }}</option>
+                                                @empty
+
+                                                @endforelse
+                                            </select>
+                                        </div>
                                     @endforelse
 
                                 </div>
                                 <button class="btn btn-success" type="button" id="addInput">Add More</button>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="certificate_background_input">Background Image</label>
+                            <input class="form-control form-control-lg" type="file" name="background"
+                                id="certificate_background_input">
+                            <img class="mt-3" width="500px" id="selected_image"
+                                src="{{ $certgen->getFirstMediaUrl('background', 'thumbnail') }}"
+                                alt="Selected Certificate Background"
+                                style="display: {{ $certgen->hasMedia('background') ? 'block' : 'none' }});">
                         </div>
 
                         <button class="btn btn-primary mt-4 float-right">Submit</button>
@@ -103,10 +131,42 @@
             lineHeights: ['0.5', '1', '1.15', '1.5', '2', '2.5', '3'],
         });
 
-        $(document).ready(function () {
-            $('#addInput').click(function () {
-                $('#inputContainer').append('<input type="text" name="signatories[]" class="form-control col-3 mb-2 mr-2" />');
+        $(document).ready(function() {
+            $('#addInput').click(function() {
+                $('#inputContainer').append(
+                    '<div class="col-md-3 mb-2">' +
+                        '<select name="signatories[]" class="form-control">' +
+                            '<option value="">Choose</option> ' +
+                            '@forelse ($members as $member)' +
+                                '<option value="{{ $member->id }}"> {{ $member->first_name }} {{ $member->last_name }}</option>' +
+                            '@empty' +
+
+                            '@endforelse' +
+                        '</select>' +
+                    '</div>'
+                );
             });
+        });
+    </script>
+
+    <script>
+        document.getElementById('certificate_background_input').addEventListener('change', function(event) {
+            const fileInput = event.target;
+            const selectedImage = document.getElementById('selected_image');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    selectedImage.src = e.target.result;
+                    selectedImage.style.display = 'block'; // Show the selected image
+                }
+
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                selectedImage.src = '';
+                selectedImage.style.display = 'none'; // Hide the selected image
+            }
         });
     </script>
 @endpush
