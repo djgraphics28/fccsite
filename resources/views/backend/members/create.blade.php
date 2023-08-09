@@ -72,8 +72,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6  mb-3 mb-sm-0">
                                 <label for="nickname">Nickname (optional)</label>
-                                <input type="text" class="form-control form-control-lg" id="nickname"
-                                    name="nickname">
+                                <input type="text" class="form-control form-control-lg" id="nickname" name="nickname">
                             </div>
                             <div class="col-sm-6">
                                 <label for="gender">Gender</label>
@@ -122,6 +121,14 @@
                                 name="dateBaptized">
                         </div>
 
+                        <div class="form-group">
+                            <label for="profile_picture_input">Image</label>
+                            <input class="form-control form-control-lg" type="file" name="profile_picture"
+                                id="profile_picture_input">
+                            <img width="200px" id="selected_image" src="" alt="Selected Profile Picture"
+                                style="display: none;">
+                        </div>
+
                         <button class="btn btn-primary mt-4 float-right">Submit</button>
                     </form>
                 </div>
@@ -129,3 +136,26 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('profile_picture_input').addEventListener('change', function(event) {
+            const fileInput = event.target;
+            const selectedImage = document.getElementById('selected_image');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    selectedImage.src = e.target.result;
+                    selectedImage.style.display = 'block'; // Show the selected image
+                }
+
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                selectedImage.src = '';
+                selectedImage.style.display = 'none'; // Hide the selected image
+            }
+        });
+    </script>
+@endpush

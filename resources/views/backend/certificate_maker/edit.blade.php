@@ -98,7 +98,9 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['height', ['height']]
-            ]
+            ],
+            fontSizes: ['8', '10', '12', '14', '16', '18', '24', '36', '48', '60', '72', '84'],
+            lineHeights: ['0.5', '1', '1.15', '1.5', '2', '2.5', '3'],
         });
 
         $(document).ready(function () {
