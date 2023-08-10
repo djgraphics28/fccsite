@@ -42,7 +42,6 @@
         width: 700px;
         margin-right: 400px;
         margin-left: 20px;
-        margin-top: 100px;
     }
 
     .signature {
