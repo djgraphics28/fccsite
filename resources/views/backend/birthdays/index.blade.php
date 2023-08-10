@@ -25,9 +25,20 @@
                             @foreach ($members as $member)
                                 <div class="col-md-2 mb-2">
                                     <div class="card">
-                                        <img class="card-img-top"
-                                            src="{{ $member->gender == 'Male' ? asset('assets/img/profile_image/male.png') : asset('assets/img/profile_image/female.png') }}"
-                                            alt="Card image cap">
+                                        @if ($row->hasMedia('profile_picture'))
+                                            <img class="card-img-top"
+                                                src="{{ $member->getFirstMediaUrl('profile_picture', 'thumbnail') }}"
+                                                alt="{{ $member->first_name }}">
+                                        @else
+                                            @if ($member->gender == 'Male')
+                                                <img class="card-img-top"  src="{{ asset('assets/img/profile_image/male.png') }}"
+                                                    alt="">
+                                            @else
+                                                <img class="card-img-top" src="{{ asset('assets/img/profile_image/female.png') }}"
+                                                    alt="">
+                                            @endif
+                                        @endif
+
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $member->first_name }}</h5>
                                             <span>Birth Date: <b>{{ $member->birth_date }}</b></span>
