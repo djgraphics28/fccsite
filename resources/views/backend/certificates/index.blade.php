@@ -126,6 +126,9 @@
         transform: rotate(-8deg);
         overflow: hidden !important;
         margin-right: 50px;
+        border: 7px solid #038ae4;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 5);
+        border-radius: 20px;
     }
     .picture img {
         position: absolute;
@@ -144,6 +147,8 @@
 
     .graduate-name h1 {
         font-size: 60px;
+        color: #006cb4;
+        font-family: Arial, Helvetica, sans-serif;
     }
 </style>
 
