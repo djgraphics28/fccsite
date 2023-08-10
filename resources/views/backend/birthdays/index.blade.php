@@ -25,7 +25,7 @@
                             @foreach ($members as $member)
                                 <div class="col-md-2 mb-2">
                                     <div class="card">
-                                        @if ($row->hasMedia('profile_picture'))
+                                        @if ($member->hasMedia('profile_picture'))
                                             <img class="card-img-top"
                                                 src="{{ $member->getFirstMediaUrl('profile_picture', 'thumbnail') }}"
                                                 alt="{{ $member->first_name }}">
