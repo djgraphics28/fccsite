@@ -92,12 +92,12 @@
         @foreach ($members as $item => $value)
             <div class="certificate">
                 @php
-                    $variableValue = strtoupper($value->first_name) . ' ' . strtoupper($value->last_name); // Replace with your actual variable value
+                    $variableValue = ucwords($value->first_name) . ' ' . ucwords($value->last_name) . ' ' . ucwords($value->ext_name); // Replace with your actual variable value
                     $modifiedContent = str_replace('{name}', $variableValue, $template->content);
                 @endphp
                 {!! $modifiedContent !!}
 
-                <p>Issued on: {{ date('F j, Y') }}</p>
+                <p>Date: August 11, 2023</p>
                 <br>
 
             </div>
