@@ -19,7 +19,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 200vh;
+        height: 180vh;
         /* background-color: blue; */
     }
 
@@ -28,6 +28,7 @@
         /* border: 1px solid #000; */
         padding: 20px;
         width: 900px;
+        height: 380px;
         margin: 0 auto;
         margin-top: 150px;
         /* background-color: green; */
@@ -37,18 +38,26 @@
     .signature-container {
 
         text-align: center;
+        padding: 10px;
+        width:750px;
+        margin: 0 auto;
+        /* background-color: yellow; */
+        position: absolute;
+
         /* border: 1px solid #000; */
-        padding: 20px;
+        /* padding: 20px;
         width: 700px;
         margin-right: 400px;
-        margin-left: 20px;
+        margin-left: 20px; */
     }
 
     .signature {
         /* background-color: green; */
+        margin-top: 50px;
         display: inline-block;
         padding: 2px;
-        text-align: center;
+        max-height: 100px;
+        /* text-align: center; */
         background-color: white;
     }
 
@@ -74,17 +83,16 @@
         size: A4 landscape;
     }
 
-    .image-container img{
+    .image-container img {
         /* background-color: yellow; */
         /* position: absolute;
         top: 200px;
         z-index: -1; */
     }
 
-    .signatory{
+    .signatory {
         /* background-color: blue; */
     }
-
 </style>
 
 <body>
@@ -92,7 +100,14 @@
         @foreach ($members as $item => $value)
             <div class="certificate">
                 @php
-                    $variableValue = ucwords($value->first_name) . ' ' . ucwords($value->last_name) . ' ' . ucwords($value->ext_name); // Replace with your actual variable value
+                    mb_internal_encoding('UTF-8'); // before calling the function
+                    mb_regex_encoding('UTF-8');
+                    if (!function_exists('mb_ucwords') && function_exists('mb_convert_case')) {
+                        function mb_ucwords($string) {
+                            return mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
+                        }
+                    }
+                    $variableValue = mb_ucwords($value->first_name) . ' ' . mb_ucwords($value->last_name) . ' ' . mb_ucwords($value->ext_name); // Replace with your actual variable value
                     $modifiedContent = str_replace('{name}', $variableValue, $template->content);
                 @endphp
                 {!! $modifiedContent !!}
@@ -114,7 +129,7 @@
                         </div>
                         <div class="signatory">
                             <u><span>{{ mb_strtoupper($sig->title) ?? '' }} {{ mb_strtoupper($sig->first_name) }}
-                                {{ mb_strtoupper($sig->last_name) }}</span></u>
+                                    {{ mb_strtoupper($sig->last_name) }}</span></u>
                         </div>
                         <div class="label">
                             <span><i>{{ $sig->position ?? '' }}</i></span>
