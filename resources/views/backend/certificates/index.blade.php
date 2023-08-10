@@ -112,7 +112,7 @@
                 @endphp
                 {!! $modifiedContent !!}
 
-                <p>Date: August 11, 2023</p>
+                {{-- <p>Date: August 11, 2023</p> --}}
                 <br>
 
             </div>
