@@ -42,13 +42,13 @@
         width: 700px;
         margin-right: 400px;
         margin-left: 20px;
-        margin-top: 120px;
+        margin-top: 100px;
     }
 
     .signature {
         /* background-color: green; */
         display: inline-block;
-        padding: 5px;
+        padding: 2px;
         text-align: center;
         background-color: white;
     }
