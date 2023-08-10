@@ -19,7 +19,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 180vh;
+        height: 200vh;
         /* background-color: blue; */
     }
 
@@ -53,7 +53,7 @@
 
     .signature {
         /* background-color: green; */
-        margin-top: 50px;
+        margin-top: 100px;
         display: inline-block;
         padding: 2px;
         max-height: 100px;
