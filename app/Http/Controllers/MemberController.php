@@ -43,6 +43,7 @@ class MemberController extends Controller
         }
 
         $data = [
+            'title' => ucwords(strtolower($request->title)),
             'first_name' => ucwords(strtolower($request->firstName)),
             'middle_name' => ucwords(strtolower($request->middleName)),
             'last_name' => ucwords(strtolower($request->lastName)),
@@ -95,6 +96,7 @@ class MemberController extends Controller
     {
 
         $data = [
+            'title' => ucwords(strtolower($request->title)),
             'first_name' => ucwords(strtolower($request->firstName)),
             'middle_name' => ucwords(strtolower($request->middleName)),
             'last_name' => ucwords(strtolower($request->lastName)),

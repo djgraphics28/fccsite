@@ -22,6 +22,7 @@ class Member extends Model implements HasMedia
     ];
 
     protected $fillable = [
+        'title',
         'first_name',
         'middle_name',
         'last_name',

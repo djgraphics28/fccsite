@@ -48,5 +48,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
+Route::get('/test', function(){
+   return \Storage::put('uploads/test.txt', 'Hello S3 Bucket');
+});
+
 
 
