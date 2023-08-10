@@ -48,6 +48,7 @@
     .signature {
         /* background-color: green; */
         display: inline-block;
+        padding: 5px;
         text-align: center;
         background-color: white;
     }
@@ -76,9 +77,9 @@
 
     .image-container img{
         /* background-color: yellow; */
-        position: absolute;
-        top: 490px;
-        z-index: -1;
+        /* position: absolute;
+        top: 200px;
+        z-index: -1; */
     }
 
     .signatory{
@@ -113,8 +114,8 @@
 
                         </div>
                         <div class="signatory">
-                            <u><span>{{ $sig->position ?? '' }} {{ strtoupper($sig->first_name) }}
-                                {{ strtoupper($sig->last_name) }}</span></u>
+                            <u><span>{{ mb_strtoupper($sig->title) ?? '' }} {{ mb_strtoupper($sig->first_name) }}
+                                {{ mb_strtoupper($sig->last_name) }}</span></u>
                         </div>
                         <div class="label">
                             <span><i>{{ $sig->position ?? '' }}</i></span>

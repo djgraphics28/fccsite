@@ -72,12 +72,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6  mb-3 mb-sm-0">
+                            <div class="col-sm-4  mb-3 mb-sm-0">
+                                <label for="title">Title (optional)</label>
+                                <input type="text" class="form-control form-control-lg" id="title" name="title" value="{{ $member->title ?? '' }}">
+                            </div>
+                            <div class="col-sm-4  mb-3 mb-sm-0">
                                 <label for="nickname">Nickname (optional)</label>
                                 <input type="text" class="form-control form-control-lg" id="nickname" name="nickname"
                                     value="{{ $member->nickname ?? '' }}">
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label for="gender">Gender</label>
                                 <select class="form-control form-control-lg @error('gender') is-invalid @enderror"
                                     id="gender" name="gender">
