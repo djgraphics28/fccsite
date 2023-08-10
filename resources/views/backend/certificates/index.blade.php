@@ -121,8 +121,8 @@
     .picture {
         display: inline-block;
         width: 420px;
-        height: 470px;
-        background-color: yellow;
+        height: 450px;
+        background-color: white;
         transform: rotate(-8deg);
         overflow: hidden !important;
         margin-right: 50px;
