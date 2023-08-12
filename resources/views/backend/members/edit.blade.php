@@ -6,8 +6,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Edit Member</h1>
-        <a href="{{ route('members.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i
-                class="fas fa-arrow-left fa-md text-white-50"></i> Back</a>
+        <livewire:back-button />
     </div>
 
     <div class="row">
@@ -17,7 +16,8 @@
                     <h4>Edit Member Form</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('members.update', $member->id) }}" method="POST" enctype="multipart/form-data">
+                    <form id="editForm" action="{{ route('members.update', $member->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -30,11 +30,11 @@
                                             alt="Selected Profile Picture">
                                     @else
                                         @if ($member->gender == 'Male')
-                                            <img class="img-thumbnail" id="selected_image" src="{{ asset('assets/img/profile_image/male.png') }}"
-                                                alt="">
+                                            <img class="img-thumbnail" id="selected_image"
+                                                src="{{ asset('assets/img/profile_image/male.png') }}" alt="">
                                         @else
-                                            <img class="img-thumbnail" id="selected_image" src="{{ asset('assets/img/profile_image/female.png') }}"
-                                                alt="">
+                                            <img class="img-thumbnail" id="selected_image"
+                                                src="{{ asset('assets/img/profile_image/female.png') }}" alt="">
                                         @endif
                                     @endif
 
@@ -62,7 +62,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="firstName">First Name</label>
-                                        <input type="text"
+                                        <input id="firstName" type="text"
                                             class="form-control form-control-lg @error('firstName') is-invalid @enderror"
                                             id="firstName" name="firstName" value="{{ $member->first_name ?? '' }}">
 
@@ -193,6 +193,19 @@
                 selectedImage.src = '';
                 selectedImage.style.display = 'none'; // Hide the selected image
             }
+
         });
+    </script>
+
+    <script>
+        // document.getElementById('editForm').addEventListener('submit', function(event) {
+        //     var searchTerm = document.getElementById('firstName').value;
+
+        //     // Store searchTerm in local storage
+        //     localStorage.setItem('searchTerm', searchTerm);
+
+        //     // Submit the form
+        //     this.submit();
+        // });
     </script>
 @endpush
