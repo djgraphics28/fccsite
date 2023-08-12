@@ -43,6 +43,12 @@ class MembersTable extends Component
         $this->certTemp = CertificateTemplate::all();
     }
 
+    public function clearSearch()
+    {
+        $this->searchTerm = '';
+        session(['searchTerm' => '']);
+    }
+
     public function sortBy($column)
     {
         if ($this->sortColumn === $column) {
