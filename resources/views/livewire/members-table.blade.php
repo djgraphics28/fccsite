@@ -42,7 +42,15 @@
                     </th>
                     <th>Gender</th>
                     <th>Birth Date</th>
-                    <th>Age</th>
+                    <th wire:click="sortBy('birth_date')">Age
+                        @if ($sortColumn === 'birth_date')
+                            @if ($sortDirection === 'asc')
+                                <i class="fas fa-caret-up"></i>
+                            @else
+                                <i class="fas fa-caret-down"></i>
+                            @endif
+                        @endif
+                    </th>
                     <th>Contact Number</th>
                     <th>Address</th>
                     <th>Action</th>
