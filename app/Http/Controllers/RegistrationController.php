@@ -24,4 +24,22 @@ class RegistrationController extends Controller
         $isFirstTime = $data->is_first_time;
         return view('success', compact('name','isFirstTime'));
     }
+
+    public function submitESignature($id)
+    {
+        return view('submit-e-signature', compact('id'));
+    }
+
+    public function storeSignature(Request $request)
+    {
+        $data = Member::findOrFail($request->memberId);
+        $data->updateOrCreate(
+            [
+                'id' => $request->memberId
+            ],
+            [
+                'id' => $request->memberId, 'e_signature' => $request->signature
+            ]);
+        return response()->json(['message' => $data->first_name.' E-Signature submitted successfully']);
+    }
 }
