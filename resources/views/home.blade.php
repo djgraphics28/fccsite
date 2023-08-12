@@ -10,8 +10,8 @@
 
     @livewire('dashboard-component')
 
-    {{-- <!-- Content Row -->
-
+     <!-- Content Row -->
+{{--
     <div class="row">
 
         <!-- Area Chart -->
@@ -84,8 +84,8 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> --}}
+{{--
     <!-- Content Row -->
     <div class="row">
 
@@ -236,6 +236,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('assets/js/demo/chart-pie-demo.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/demo/chart-area-demo.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/demo/chart-pie-demo.js') }}"></script> --}}
 @endpush
