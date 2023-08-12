@@ -3,7 +3,13 @@
         <div class="row mb-4">
             <div class="col-md-4 mb-2">
                 <!-- Search Input -->
-                <input type="text" class="form-control" wire:model="searchTerm" placeholder="Search...">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" wire:model="searchTerm" placeholder="Search..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" wire:click="clearSearch" type="button">Clear</button>
+                    </div>
+                  </div>
+                {{-- <input type="text" class="form-control" wire:model="searchTerm" placeholder="Search..."> --}}
             </div>
             <div class="col-md-2 mb-2">
                 <select wire:model="perPage" class="form-control">
