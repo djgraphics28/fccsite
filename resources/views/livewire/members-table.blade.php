@@ -31,7 +31,15 @@
                 <tr>
                     <th class="text-center" width="2%"><input type="checkbox" wire:model="selectAll"></th>
                     <th>Image</th>
-                    <th>Name</th>
+                    <th wire:click="sortBy('last_name')">Name
+                        @if ($sortColumn === 'last_name')
+                            @if ($sortDirection === 'asc')
+                                <i class="fas fa-caret-up"></i>
+                            @else
+                                <i class="fas fa-caret-down"></i>
+                            @endif
+                        @endif
+                    </th>
                     <th>Gender</th>
                     <th>Birth Date</th>
                     <th>Age</th>
@@ -58,7 +66,7 @@
                                 @endif
                             @endif
                         </td>
-                        <td>{{ $row->first_name }} {{ $row->middle_name }} {{ $row->last_name }} {{ $row->ext_name }}
+                        <td>{{ $row->last_name }}, {{ $row->first_name }} {{ $row->ext_name }} {{ $row->middle_name }}
                         </td>
                         <td>{{ $row->gender }}</td>
                         <td>{{ $row->birth_date }}</td>

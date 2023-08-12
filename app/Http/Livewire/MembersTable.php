@@ -27,9 +27,22 @@ class MembersTable extends Component
     public $certTemp = [];
     public $certOption;
 
+    public $sortColumn = 'last_name';
+    public $sortDirection = 'asc';
+
     public function mount()
     {
         $this->certTemp = CertificateTemplate::all();
+    }
+
+    public function sortBy($column)
+    {
+        if ($this->sortColumn === $column) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortColumn = $column;
+            $this->sortDirection = 'asc';
+        }
     }
 
     public function render()
@@ -57,8 +70,10 @@ class MembersTable extends Component
     {
         return Member::when($this->sortByGender, function($query){
             $query->where('gender', $this->sortByGender);
-        })->latest()
+        })
         ->search(trim($this->searchTerm))
+        ->orderBy($this->sortColumn, $this->sortDirection)
+        ->orderBy('created_at', 'desc')
         ->paginate($this->perPage);
     }
 

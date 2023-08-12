@@ -19,123 +19,128 @@
                 <div class="card-body">
                     <form action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group">
-                            <label for="isFirstTime">First Timer?</label>
-                            <select class="form-control form-control-lg" id="isFirstTime" name="isFirstTime">
-                                <option value="">Select option</option>
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
-                            @error('gender')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="firstName">First Name</label>
-                                <input type="text"
-                                    class="form-control form-control-lg @error('firstName') is-invalid @enderror"
-                                    id="firstName" name="firstName">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="profile_picture_input">Image</label>
+                                    <img class="img-thumbnail" id="selected_image" src="{{ asset('assets/img/profile_image/defaultpic.png') }}" alt="Selected Profile Picture">
+                                    <input class="form-control form-control-lg" type="file" name="profile_picture"
+                                        id="profile_picture_input">
 
-                                @error('firstName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                </div>
                             </div>
-                            <div class="col-sm-6">
-                                <label for="middleName">Middle Name</label>
-                                <input type="text" class="form-control form-control-lg" id="middleName"
-                                    name="middleName">
-                            </div>
-                        </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="isFirstTime">First Timer?</label>
+                                    <select class="form-control form-control-lg" id="isFirstTime" name="isFirstTime">
+                                        <option value="">Select option</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                    @error('gender')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text"
+                                            class="form-control form-control-lg @error('firstName') is-invalid @enderror"
+                                            id="firstName" name="firstName">
 
-                        <div class="form-group row">
-                            <div class="col-sm-6  mb-3 mb-sm-0">
-                                <label for="lastName">Last Name</label>
-                                <input type="text"
-                                    class="form-control form-control-lg @error('lastName') is-invalid @enderror"
-                                    id="lastName" name="lastName">
-                                @error('lastName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="extName">Extension Name (ex. JR,SR.)</label>
-                                <input type="text" class="form-control form-control-lg" id="extName" name="extName">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-4  mb-3 mb-sm-0">
-                                <label for="title">Title (optional)</label>
-                                <input type="text" class="form-control form-control-lg" id="title" name="title">
-                            </div>
-                            <div class="col-sm-4  mb-3 mb-sm-0">
-                                <label for="nickname">Nickname (optional)</label>
-                                <input type="text" class="form-control form-control-lg" id="nickname" name="nickname">
-                            </div>
-                            <div class="col-sm-4">
-                                <label for="gender">Gender</label>
-                                <select class="form-control form-control-lg @error('gender') is-invalid @enderror"
-                                    id="gender" name="gender">
-                                    <option value="">Select option</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                                        @error('firstName')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="middleName">Middle Name</label>
+                                        <input type="text" class="form-control form-control-lg" id="middleName"
+                                            name="middleName">
+                                    </div>
+                                </div>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="birthDate">Birth Date</label>
-                            <input type="date"
-                                class="form-control form-control-lg @error('birthDate') is-invalid @enderror" id="birthDate"
-                                name="birthDate">
-                            @error('birthDate')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="contactNumber">Contact Number</label>
-                            <input type="number" class="form-control form-control-lg" id="contactNumber"
-                                name="contactNumber">
-                        </div>
-                        <div class="form-group">
-                            <label for="position">Position</label>
-                            <input type="text" class="form-control form-control-lg" id="position"
-                                name="position">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea class="form-control" cols="30" rows="3" name="address"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">EmailAddress</label>
-                            <input type="email" class="form-control form-control-lg" id="email"
-                                placeholder="example@gmail.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="dateBaptized">Date Baptized</label>
-                            <input type="date" class="form-control form-control-lg" id="dateBaptized"
-                                name="dateBaptized">
-                        </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6  mb-3 mb-sm-0">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text"
+                                            class="form-control form-control-lg @error('lastName') is-invalid @enderror"
+                                            id="lastName" name="lastName">
+                                        @error('lastName')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="extName">Extension Name (ex. JR,SR.)</label>
+                                        <input type="text" class="form-control form-control-lg" id="extName" name="extName">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4  mb-3 mb-sm-0">
+                                        <label for="title">Title (optional)</label>
+                                        <input type="text" class="form-control form-control-lg" id="title" name="title">
+                                    </div>
+                                    <div class="col-sm-4  mb-3 mb-sm-0">
+                                        <label for="nickname">Nickname (optional)</label>
+                                        <input type="text" class="form-control form-control-lg" id="nickname" name="nickname">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="gender">Gender</label>
+                                        <select class="form-control form-control-lg @error('gender') is-invalid @enderror"
+                                            id="gender" name="gender">
+                                            <option value="">Select option</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        @error('gender')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
 
-                        <div class="form-group">
-                            <label for="profile_picture_input">Image</label>
-                            <input class="form-control form-control-lg" type="file" name="profile_picture"
-                                id="profile_picture_input">
-                            <img width="200px" id="selected_image" src="" alt="Selected Profile Picture"
-                                style="display: none;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthDate">Birth Date</label>
+                                    <input type="date"
+                                        class="form-control form-control-lg @error('birthDate') is-invalid @enderror" id="birthDate"
+                                        name="birthDate">
+                                    @error('birthDate')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactNumber">Contact Number</label>
+                                    <input type="number" class="form-control form-control-lg" id="contactNumber"
+                                        name="contactNumber">
+                                </div>
+                                <div class="form-group">
+                                    <label for="position">Position</label>
+                                    <input type="text" class="form-control form-control-lg" id="position"
+                                        name="position">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <textarea class="form-control" cols="30" rows="3" name="address"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">EmailAddress</label>
+                                    <input type="email" class="form-control form-control-lg" id="email"
+                                        placeholder="example@gmail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateBaptized">Date Baptized</label>
+                                    <input type="date" class="form-control form-control-lg" id="dateBaptized"
+                                        name="dateBaptized">
+                                </div>
+                            </div>
                         </div>
 
                         <button class="btn btn-primary mt-4 float-right">Submit</button>
