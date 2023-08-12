@@ -12,6 +12,7 @@ class RegistrationComponent extends Component
     public $middleName;
     public $lastName;
     public $extName;
+    public $nickname;
     public $gender;
     public $birthDate;
     public $contactNumber;
@@ -50,10 +51,11 @@ class RegistrationComponent extends Component
         }
 
         $data = [
-            'first_name' => $this->firstName,
-            'middle_name' => $this->middleName,
-            'last_name' => $this->lastName,
-            'ext_name' => $this->extName,
+            'first_name' => ucwords(strtolower($this->firstName)),
+            'middle_name' => ucwords(strtolower($this->middleName)),
+            'last_name' => ucwords(strtolower($this->lastName)),
+            'ext_name' => ucwords(strtolower($this->extName)),
+            'nickname' => ucwords(strtolower($this->nickname)),
             'gender' => $this->gender,
             'birth_date' => $this->birthDate,
             'address' => $this->address,

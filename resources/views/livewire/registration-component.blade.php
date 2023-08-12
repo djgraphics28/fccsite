@@ -4,16 +4,16 @@
             <img src="{{ asset('FCCPI.png') }}" alt="FCCPI Logo" width="50px" class="mb-2">
             <h1 class="h4 text-dark mb-4">Membership Form</h1>
         </div>
-        @error('nameCombination') <span class="error">{{ $message }}</span> @enderror
+        {{-- @error('nameCombination') <span class="error">{{ $message }}</span> @enderror --}}
         <form class="user" wire:submit.prevent="store">
             <div class="form-group">
-                <label for="isFirstTime">Is this your first time attending here at FCC Bugayong?</label>
-               <select class="form-control form-control-lg id="isFirstTime" wire:model="isFirstTime">
-                    <option value="">Select option</option>
+                <label for="">Ito ba ang unang pagkakataon mo na dumalo sa FCC Bugayong Church?</label>
+                <select class="form-control form-control-lg id="isFirstTime" wire:model="isFirstTime">
+                    <option value="">-- choose option --</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
-               </select>
-               @error('gender')
+                </select>
+                @error('gender')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -22,7 +22,8 @@
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control form-control-lg @error('firstName') is-invalid @enderror" id="firstName" wire:model="firstName">
+                    <input type="text" class="form-control form-control-lg @error('firstName') is-invalid @enderror"
+                        id="firstName" wire:model="firstName">
 
                     @error('firstName')
                         <span class="invalid-feedback" role="alert">
@@ -39,7 +40,8 @@
             <div class="form-group row">
                 <div class="col-sm-6  mb-3 mb-sm-0">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control form-control-lg @error('lastName') is-invalid @enderror" id="lastName" wire:model="lastName">
+                    <input type="text" class="form-control form-control-lg @error('lastName') is-invalid @enderror"
+                        id="lastName" wire:model="lastName">
                     @error('lastName')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -51,22 +53,30 @@
                     <input type="text" class="form-control form-control-lg" id="extName" wire:model="extName">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="gender">Gender</label>
-               <select class="form-control form-control-lg @error('gender') is-invalid @enderror" id="gender" wire:model="gender">
-                    <option value="">Select option</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-               </select>
-               @error('gender')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="form-group row">
+                <div class="col-sm-6  mb-3 mb-sm-0">
+                    <label for="nickname">Nickname (optional)</label>
+                    <input type="text" class="form-control form-control-lg" id="nickname" wire:model="nickname">
+                </div>
+                <div class="col-sm-6">
+                    <label for="gender">Gender</label>
+                    <select class="form-control form-control-lg @error('gender') is-invalid @enderror" id="gender"
+                        wire:model="gender">
+                        <option value="">-- choose option --</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    @error('gender')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
             </div>
             <div class="form-group">
                 <label for="birthDate">Birth Date</label>
-                <input type="date" class="form-control form-control-lg @error('birthDate') is-invalid @enderror" id="birthDate" wire:model="birthDate">
+                <input type="date" class="form-control form-control-lg @error('birthDate') is-invalid @enderror"
+                    id="birthDate" wire:model="birthDate">
                 @error('birthDate')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -75,18 +85,20 @@
             </div>
             <div class="form-group">
                 <label for="contactNumber">Contact Number</label>
-                <input type="number" class="form-control form-control-lg" id="contactNumber" wire:model="contactNumber">
+                <input type="number" class="form-control form-control-lg" id="contactNumber"
+                    wire:model="contactNumber">
             </div>
             <div class="form-group">
                 <label for="address">Address</label>
                 <textarea class="form-control" cols="30" rows="3" wire:model="address"></textarea>
             </div>
             <div class="form-group">
-                <label for="email">EmailAddress</label>
-                <input type="email" class="form-control form-control-lg" id="email" placeholder="example@gmail.com">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control form-control-lg" id="email"
+                    placeholder="example@gmail.com">
             </div>
             <div class="form-group">
-                <label for="dateBaptized">If already baptized, When? (optional)</label>
+                <label for="dateBaptized">Kailan ka na-baptized? (optional)</label>
                 <input type="date" class="form-control form-control-lg" id="dateBaptized" wire:model="dateBaptized">
             </div>
 
