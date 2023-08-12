@@ -12,9 +12,7 @@ class MembersTable extends Component
     use WithPagination;
     // public $status;
 
-    public $searchTerm;
-
-    protected $listeners = ['remove'];
+    public $searchTerm = '';
     public $approveConfirmed;
     // filters
     public $perPage = 10;
@@ -30,8 +28,18 @@ class MembersTable extends Component
     public $sortColumn = 'last_name';
     public $sortDirection = 'asc';
 
+    protected $queryString = ['searchTerm', 'sortColumn', 'sortDirection','selectAll', 'selectedRows', 'perPage', 'sortByGender'];
+
+    // protected $listeners = ['searchTermUpdated' => 'updateSearchTerm'];
+
+    public function getStoredSearchTerm()
+    {
+        return request()->session()->get('searchTerm', '');
+    }
+
     public function mount()
     {
+        $this->searchTerm = $this->getStoredSearchTerm();
         $this->certTemp = CertificateTemplate::all();
     }
 

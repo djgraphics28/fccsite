@@ -6,8 +6,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Create New Member</h1>
-        <a href="{{ route('members.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i
-                class="fas fa-arrow-left fa-md text-white-50"></i> Back</a>
+        <livewire:back-button />
     </div>
 
     <div class="row">

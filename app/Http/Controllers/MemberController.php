@@ -69,6 +69,7 @@ class MemberController extends Controller
 
         if($data) {
             toastr()->success('New Member has been created successfully!');
+            $request->session()->put('searchTerm', $request->input('firstName'));
             return redirect()->route('members.index');
         }
     }
@@ -118,7 +119,7 @@ class MemberController extends Controller
             $member->addMediaFromRequest('profile_picture')
                 ->toMediaCollection('profile_picture');
         }
-
+        $request->session()->put('searchTerm', $request->input('firstName'));
         return redirect()->route('members.index')->with('success', 'Member Info is updated successfully!');
     }
 
